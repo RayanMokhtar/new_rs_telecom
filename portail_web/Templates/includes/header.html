@@ -1,0 +1,101 @@
+{% load static %}
+<section id="particles-js" class="d-flex bg-md-full">
+    <div class="left-block" data-aos="zoom-in-down" data-aos-duration="3000">
+        <div class="container">
+            <div class="row justifify-content-center align-content-center m-3">
+                <div class="text-with text-center align-item-center">
+                    <!-- <h2>Expertise technique & Conseil</h2> -->
+                    <h2 class="text-uppercase header-title"><strong id="typewriter"></strong><span class="cursor">|</span></h2>
+                    <!-- <p>Nous mettons à la disposition de nos clients les compétences et les talents adaptés à la complexité de leurs environnements techniques.</p> -->
+                    <p><span id="typewriterp"></span><span class="cursor">|</span></p>
+                </div>
+            </div>
+        </div>
+        <!-- <h2 class="text-uppercase header-title"><strong id="typewriter"></strong><span class="cursor">|</span></h2>
+        <p><span id="typewriterp"></span><span class="cursor">|</span></p> -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="50">
+            <button type="button" id="showemodal" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#formulairemodal">
+                Rejoignez-nous
+            </button>
+        </div>
+    </div> 
+    <video autoplay loop muted class="di-none">
+        <source src="{% static 'video/bg6.mp4' %}" type="video/mp4">
+    </video>
+    <div class="js-slider_indicator">
+        <div class="js-slider-indi indi-1"></div>
+        <div class="js-slider-indi indi-2"></div>
+        <div class="js-slider-indi indi-3"></div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="formulairemodal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-form">
+                <div class="column" id="main">
+                    <h1>Bienvenue chez R&S TELECOM</h1>
+                    <h3 id="enbleme"></h3>
+                    <div class="df-switch">
+                        <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false">
+                            <span class="inner-handle"></span>
+                            <span class="handle"></span>
+                        </button>
+                    </div>
+
+                    <form>
+                        <div class="form-group m-3">
+                            <label for="InputfirstName">Prenom</label>
+                            <input type="text" class="form-control" id="InputfirstName" placeholder="Votre nom..">
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="InputName">Nom</label>
+                            <input type="text" class="form-control" id="InputName" placeholder="Votre nom..">
+                        </div>
+                        <div class="form-group m-3 client d-none">
+                            <label for="InputCompagny">Societe</label>
+                            <input type="text" class="form-control" id="InputCompagny" placeholder="Votre entreprise..">
+                        </div>
+                        <div class="form-group m-3 client d-none">
+                            <label for="InputEmailp">E-mail professionnel</label>
+                            <input type="email" class="form-control" id="InputEmailp" placeholder="Votre E-mail professionnel...">
+                        </div>
+                        <div class="form-group m-3 condidat">
+                            <label for="InputEmail">E-mail </label>
+                            <input type="email" class="form-control" id="InputEmail" placeholder="Votre E-mail...">
+                        </div>
+                        <div class="form-group m-3 condidat">
+                            <label for="InputCv">CV</label>
+                            <input id="InputCv" class="demo1" type="file" placeholder="Ajouter votre cv (.pdf)" name="demo1" />
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="InputMessage">Message</label>
+                            <textarea name="InputMessage" id="InputMessage" class="form-control" cols="20" rows="3"></textarea>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="submit" id="submit" class="btn btn-primary" value="Soumettre">
+                        </div>
+                    </form>
+                </div>
+                <div class="di-none">
+                    <svg width="78px" viewBox="0 0 67 578" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z"
+                                id="Path" fill="#317ACA"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="column di-none" id="secondary">
+                    <div class="sec-content">
+                        <h2 id="title" class="mp-3">Augmentez vos chances d'être contacté par un recruteur</h2>
+                        <h3>Chaque mois près de 20 000 nouveaux profils sont publiés sur R&S TELECOM</h3>
+                        <button type="button" class="btn btn-primary">Consultant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
