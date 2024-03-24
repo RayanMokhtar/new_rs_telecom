@@ -1,0 +1,86 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} R&S TELECOM | Contact {% endblock %}
+{% block content %}
+<section id="contact " class="contact pt-4">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <span>Contactez-nous</span>
+            <h2>Contactez-nous</h2>
+        </div>
+
+      
+      <div class="row gy-4 ">
+        <h4 class="text-center">Contactez-nous pour tout ce qui concerne notre entreprise ou nos services.
+            Nous ferons de notre mieux pour vous répondre dans les plus brefs délais. </h4>
+        <div class="col-lg-4 pt-4">
+
+          <div class="info-item d-flex pt-4">
+            <i class="bi bi-geo-alt flex-shrink-0"></i>
+            <div>
+              <h4>Adresse:</h4>
+              <p>8 Rue des Frères Caudron,
+                78140 Vélizy-Villacoublay</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="info-item d-flex pt-4">
+            <i class="bi bi-envelope flex-shrink-0"></i>
+            <div>
+              <h4>Email:</h4>
+              <p>contact@rs-telecom.fr</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="info-item d-flex">
+            <i class="bi bi-phone flex-shrink-0"></i>
+            <div>
+              <h4>Numero de telephone:</h4>
+              <p><a href="tel:+33134630234" class="text-black">01 34 63  02  34</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <form class="php-email-form" id="contactId" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="votre nom.." required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Votre adresse email.." required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="compagny" class="form-control" id="compagny" placeholder="votre entreprise.." required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Votre numero.." required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="votre sujet.." required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" id="message" placeholder="Votre message.. " required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Chargement...</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Votre message a été envoyé. Nous vous remercions de votre attention.</div>
+            </div>
+            <div class="text-center"><button type="submit" id="sendContact">Envoyez un message</button></div>
+          </form>
+        </div>
+
+      </div>
+      <div class="pt-5">
+        <iframe style="border:0; width: 100%; height: 340px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2629.038030329653!2d2.2120476123410406!3d48.781164206018126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67bd9d107be2f%3A0xcf354b5251f88cfa!2s8%20Rue%20des%20Fr%C3%A8res%20Caudron%2C%2078140%20V%C3%A9lizy-Villacoublay!5e0!3m2!1sfr!2sfr!4v1708957854209!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+
+    </div>
+  </section>
+{%endblock %}

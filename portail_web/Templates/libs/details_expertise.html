@@ -1,0 +1,244 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} R&S TELECOM | Secteurs {% endblock %}
+{% block content %}
+
+<section id="service-details" class="service-details">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <span>Secteur {{active_page}}</span>
+            <h2>Secteur {{active_page}}</h2>
+        </div>
+        
+      <div class="row gy-4">
+        <div class="col-lg-4">
+            <div class="services-list">
+                <a href="aerospace" class="{% if active_page == 'aerospace' %} active {% endif %}">AEROSPACE</a>
+                <a href="banque" class="{%if active_page == 'banque' %} active {% endif %}">BANQUE</a>
+                <a href="automobile" class="{%if active_page == 'automobile' %} active {% endif %}">AUTOMOBILE</a>
+                <a href="healthcare" class="{%if active_page == 'healthcare' %} active {% endif %}">HEALTHCARE</a>
+                <a href="energie" class="{%if active_page == 'energie' %} active {% endif %}">ENERGIE & UTILITIES</a>
+                <a href="public" class="{%if active_page == 'public' %} active {% endif %}">SECTEUR PUBLIC</a>
+            </div>
+        
+            {% if active_page == 'aerospace'%}
+            <h4>Aérospace un secteur en pleine mutation</h4>
+            <p>Ce secteur est aujourd'hui confronté à une révolution majeure. Ayant accéléré la production, la demande devient
+                plus volatile, et la production doit être plus agile. Les exigences environnementales impliquent la
+                transformation des produits, mais aussi des usines plus « vertes ». Les entreprises du secteur Aérospatiale doit développer de nouvelles sources de revenus et identifier de nouveaux marchés.
+                Et bien sûr, dans une période difficile,
+                les coûts doivent être adaptés à la tendance actuelle, et devenir de plus en plus compétitifs.
+            </p>
+            {% elif active_page == 'banque'%}
+            <h4>Une transformation profonde des modèles bancaires</h4>
+            <p>Le contexte de taux durablement bas et de marges en baisse, la pression réglementaire continue, la concurrence
+                croissante de nouveaux entrants sur une partie de la de chaîne de la valeur, et les innovations développées par des
+                fintech défient les acteurs bancaires et les services financiers spécialisés traditionnels et établis, tant en B2C
+                qu'en B2B.
+            </p>
+            <p>
+                Dans l'ère post digitale, le client bancaire est de plus en plus sensible aux coûts et s'attend à trouver chez son
+                banquier un parcours client de qualité, sans couture, et complètement personnalisé.
+            </p>
+            {% elif active_page == 'automobile'%}
+            <h4>L'automobile, un secteur en pleine révolution écologique et économique</h4>
+            <p>
+                Face à des enjeux environnementaux importants et à un contexte économique défavorable, le marché automobile est en
+                pleine mutation. Tous les acteurs y participent activement, tant d'un point de vue technologique (automatisation et
+                connectivité des véhicules) que d'un point de vue des modes de « consommation » des transports (nouveaux modes de
+                partage...) et de l'usage qui en est fait (multimodalité…). Par ailleurs, les enjeux environnementaux font
+                naturellement évoluer les modes de propulsion des véhicules (hybridation et électrique/hydrogène)
+            </p>
+            <p>
+                L'évolution technologique IT/OT permet aux constructeurs et aux équipementiers de faire évoluer les produits et de
+                créer de nouveaux services tout en apportant des réponses aux demandes des clients. Le Système d'Information (SI)
+                doit donc s'adapter aux évolutions permanentes d'un domaine en pleine phase de mutation historique.
+            </p>
+            {% elif active_page == 'healthcare'%}
+            <h4>La digitalisation des services de santé, un enjeu sociétal</h4>
+            <p>
+                Digitaliser le système de santé pour répondre aux enjeux du secteur et relever les défis d'aujourd'hui et de
+                demain... Au vu des évolutions sociétales majeures attendues dans les années à venir - vieillissement de la
+                population, augmentation du nombre de personnes dépendantes, augmentation des maladies chroniques, mise en relation
+                des patients, jouer un rôle actif dans leur santé… - le secteur de la santé est confronté à de nombreux défis
+                structurels
+            </p>
+            {% elif active_page == 'energie'%}
+            <h4>Le digital au cœur de la transformation du secteur Energie et Utilities</h4>
+            <p>
+                Le secteur Energie & Utilities est confronté à une triple transformation : les impératifs de la transition énergétique et du développement des énergies renouvelables d'une part, la production décentralisée et le déploiement d'un réseau de distribution au plus près des territoires d'autre part, et enfin, les formidables opportunités liées à la pénétration de la technologie digitale. A cela s'ajoutent des évolutions réglementaires structurantes et l'ouverture du marché à la concurrence.
+            </p>
+            <p>
+                Enfin nous mettons au service de leur transformation l'ensemble de nos expertises cloud, mobiles, digitales et industrie 4.0 (IoT, PLM, Digital Twin…).
+            </p>
+            {% elif active_page == 'public'%}
+            <h4>Accélérer et sécuriser la transformation du secteur public</h4>
+            <p>
+                r&s-telecom aborde les défis du nouveau citoyen et des territoires numériques. Nous fournissons l'innovation et
+                l'accélération de nouveaux modèles de services publics axés sur le citoyen (Smart City, Smart Government, Smart
+                Health...), et nous disposons d'une suite logicielle globale en propriété intellectuelle pour les collectivités
+                locales, ainsi que de capacités d'intégration puissantes.
+            </p>
+            <p>
+                Grâce à ses solutions logicielles, nos centres de services industriels et notre expertise commerciale et numérique,
+                r&s-telecom aide les ministères, les autorités gouvernementales, les agences publiques et les collectivités locales à
+                accélérer et à sécuriser leur transformation numérique.
+            </p>
+            {%else%}
+
+            <h1>Que dall</h1>
+            {%endif%}
+        </div>
+        <div class="col-lg-8">
+        
+            <img src="{% static 'images/services/' %}{{ active_page }}.jpg" alt="{{ active_page }}" class="img-fluid services-img">
+            {%if active_page == 'aerospace'%}
+            <h3>Nous couvrons l'ensemble de la chaîne de valeur de l'industrie Aérospace</h3>
+            <p>
+                La réponse des acteurs de l'industrie aérospatiale et défense aux enjeux économiques et écologiques passe par
+                une plus grande agilité.
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Générer de nouveaux revenus grâce à la création de produits et
+                        services numériques.</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Optimiser la planification dans les chaînes d'approvisionnement
+                        complexes</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Devenir une industrie verte avec des usines plus vertes et une
+                        économie circulaire</span></li>
+            </ul>
+            <p>
+                Nous accompagnons votre transformation en lançant de nouveaux services, en renforçant la sécurité, en améliorant
+                la résilience de la chaîne d'approvisionnement et en prenant soin de la responsabilité environnementale, avec un
+                contrôle des coûts obligatoires.
+            </p>
+            <h3>Des solutions avancées pour booster vos performances</h3>
+            <p>
+                Nous fournissons des conseils et de l'expertise, la mise en œuvre de solutions packagées, le développement de
+                services sur mesure et des solutions logicielles Inetum pour optimiser et transformer les modèles existants.
+            </p>
+        
+            {% elif active_page == 'banque' %}
+            <h3>Dans le secteur bancaire, les leaders de demain auront...</h3>
+            <p>
+                Innovation, qualité service client, efficacité opérationnelle, sécurité, compliance… 
+                nous accompagnons vos équipes métiers et IT dans la création de valeur.
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span>maîtrisé l'utilisation de la donnée pour personnaliser leurs
+                        offres,
+                        services et parcours clients;-développé de nouveaux produits et services, tirant parti des nouvelles
+                        technologies et disruptions (IoT, 5G, évolutions dans le domaine des paiements…) ;</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>développé une relation clients forte en les fidélisant au travers
+                        d'offres spécifiquement adaptées à son besoin;</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>su s'appuyer sur un écosystème de partenaires (start-up, fin tech,
+                        reg
+                        tech, partenaires technologiques) pour aller plus vite et réduire le coûts des projets;</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>réussi la transformation de leur système d'information legacy pour
+                        réduire les coûts et développer leur ouverture.</span></li>
+        
+            </ul>
+            <p>
+                Une approche de la transformation digitale alliant expertises des métiers bancaires et de solides capacités IT
+        
+                Nos experts métiers et IT vous accompagnent dans la mise en place de capacités digitales, dans l'exploitation de
+                vos données, l'adaptation de vos processus, organisations et systèmes d'information au service du développement
+                de nouveaux produits et services, de l'amélioration de la relation client, de l'amélioration de l'efficacité
+                opérationnelle, et de la maîtrise des risques (crédit, conformité, opérationnel, structurels et marché).
+            </p>
+            <h3>Une offre pour accompagner la transformation des modèles</h3>
+            <p>
+                Nous accompagnons nos clients dans la transformation et la digitalisation des grands métiers bancaires et de
+                leurs systèmes d'information.
+            </p>
+            {% elif active_page == 'automobile'%}
+            <h3>Vers une production plus verte, efficace et intelligente</h3>
+            <p>
+                Un partenaire stratégique qui accompagne la transformation digitale sur toutes les composantes SI des constructeurs et équipementiers automobiles :
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Mettre en œuvre la continuité numérique dans vos projets d'usines connectées (Factory 4.0) - de la mise en œuvre de l'IoT à la gestion de la production (cadre standard ISA 95).</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Mettre en place des outils d'automatisation de vos processus métiers</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Gérer vos données depuis les véhicules connectés</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Introduire un système de traçabilité des stocks sécurisés grâce à la technologie blockchain de la relation client par la digitalisation accrue du parcours client - personnalisation des produits</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Présenter des solutions innovantes pour améliorer le Time to Market, la sécurité et la personnalisation en particulier</span></li>
+            </ul>
+            <p>
+                Constructeurs et équipementiers sont dans un contexte de transformation digitale auquel il convient d'intégrer les innovations phares liées au traitement des données de masse, à l'IA et la blockchain, aux nouveaux usages et à l'évolution technologique du secteur automobile tel que le Véhicule Connecté/Electrique/Autonome, le tout en s'appuyant  sur une infrastructure Cloud. 
+            </p>
+            <h3> Offre personnalisée, efficacité, et une production plus intelligente</h3>
+            <p>
+                Nous adaptons notre approche industrielle et automatisée des opérations informatiques aux spécificités de nos clients.
+            </p>
+        
+            {% elif active_page == 'healthcare'%}
+            <h3>Une approche technologique et des connaissances sectorielles proposées en proximité</h3>
+            <p>
+                Face aux évolutions sociétales et aux enjeux du système de santé, Inetum ambitionne d'être un acteur reconnu de la transformation de ce secteur.
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span> Double expérience en tant qu'éditeur et intégrateur de logiciels pour mettre en place, intégrer et déployer des systèmes d'information complets</span></li>
+                <li><i class="bi bi-check-circle"></i> <span> Solide connaissance du secteur de la santé tant dans sa composante sanitaire que dans sa composante sociale et médico-sociale, abordant toutes les échelles de l'écosystème (national, régional, territorial et local)</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Capacité à intégrer la dimension « Innovation » dans nos solutions</span></li>
+                <li><i class="bi bi-check-circle"></i> <span></span>Capacité à s'appuyer sur des pôles d'expertise tout en conservant une approche de proximité grâce à une forte implantation locale</span></li>
+            </ul>
+            <p>
+                Nous accompagnons votre transformation en lançant de nouveaux services, en renforçant la sécurité, en améliorant
+                la résilience de la chaîne d'approvisionnement et en prenant soin de la responsabilité environnementale, avec un
+                contrôle des coûts obligatoires.
+            </p>
+            <h3>Des solutions avancées pour booster vos performances</h3>
+            <p>
+                Nous fournissons des conseils et de l'expertise, la mise en œuvre de solutions packagées, le développement de
+                services sur mesure et des solutions logicielles Inetum pour optimiser et transformer les modèles existants.
+            </p>
+            {% elif active_page == 'energie'%}
+            <h3>Garantir la continuité digitale tout au long de la chaîne de valeur Energie & Utilities</h3>
+            <p>
+                Nous collaborons avec les principaux industriels de l'électricité, du pétrole, du gaz, de l'eau, de la gestion des déchets et des services énergétiques tout au long de leur chaîne de valeur : production, transport et distribution, marketing, services B2B et B2C, trading et fonctions transverses.
+            </p>
+            <p>Nous avons développé et implanté chez nos clients un portefeuille d'offres métier couvrant les thématiques suivantes : Energy Assets & Data Management, maintenance prédictive, Field Services, Smart Grids, mobilité électrique, Meter-to-Cash, Smart Energy Services, Smart Cities.</p>
+            <p>
+                Nous accompagnons votre transformation en lançant de nouveaux services, en renforçant la sécurité, en améliorant
+                la résilience de la chaîne d'approvisionnement et en prenant soin de la responsabilité environnementale, avec un
+                contrôle des coûts obligatoires.
+            </p>
+            <h3>Innovation, proximité et industrialisation pour répondre aux enjeux croissants du secteur de l'Énergie et des Utilities</h3>
+            <p>
+                Accompagner les entreprises mondiales et internationales dans leurs transformations en agissant au plus près des clients et des écosystèmes.
+            </p>
+            {% elif active_page == 'public'%}
+            <h3>Nous transformons les procédures administratives en services aux citoyens</h3>
+            <p>
+                Grâce à notre connaissance approfondie du secteur public, nous proposons des solutions qui améliorent l'efficacité du personnel administratif et simplifient les relations au quotidien avec les citoyens.​
+                Nous fournissons des résultats concrets :
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Personnaliser la relation avec le citoyen et l'usager en simplifiant et dématérialisant les procédures administratives et en les rendant transparentes</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Sécuriser les données publiques et en faciliter l'accès pour alimenter l'économie de la connaissance en construisant des écosystèmes et en augmentant la valeur en intégrant les organisations publiques et privées</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Permettre des gains de productivité grâce à la numérisation et à l'automatisation des processus</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Améliorer l'évaluation des politiques publiques, et mesurer la satisfaction des usagers et la performance des services</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Mises à jour continues en fonction des réglementations les plus récentes</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Fournir aux agents des outils de productivité et de collaboration, leur permettant de se repositionner sur des tâches à valeur ajoutée et d'améliorer leur capacité à prendre les décisions en utilisant les données publique</span></li>
+            </ul>
+            <p>
+                Nous accompagnons votre transformation en lançant de nouveaux services, en renforçant la sécurité, en améliorant
+                la résilience de la chaîne d'approvisionnement et en prenant soin de la responsabilité environnementale, avec un
+                contrôle des coûts obligatoires.
+            </p>
+            <h3>Moderniser le Secteur Public </h3>
+            <p>
+                Pour améliorer l'efficacité de ses services aux citoyens, l'administration publique peut mettre en place sa transformation en s'appuyant sur une offre technologique innovante.
+            </p>
+            <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Digitalisation métier</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Excellence informatique</span></li>    
+            </ul>
+            {%else%}
+            <h1>Rien ici</h1>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
+
+{%endblock %}

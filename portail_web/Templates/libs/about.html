@@ -1,52 +1,148 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% block title %} R&S TELECOM | Apropos {% endblock %}
 {% block content %}
-    <!-- <div class="my-div-custom">
-        <h1 class="custum-text">Vous conseiller et vous accompagner dans la securisation numerique de vos donnes</h1>
-        <hr class="custum-line">
-    </div> -->
-    <div class="container py-4">
-        <div class="row">
-            <h1 class="custum-text">Qui nous sommes ?</h1>
-            <hr class="custum-line">
-            <div class="col-md-6">
-               
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum velit vitae asperiores alias ratione
-                    eaque, pariatur unde nihil assumenda eum laborum. Officia fugit placeat dignissimos vero enim odit nisi
-                    animi.</p>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Nos valeurs</h2>
-                        <hr class="custum-line">
-                    </div>
-                </div>
-                <div class="row py-5">
-                    <div class="col-md-4">
-                        <div class="valeur">
-                            <i class="bi bi-lightning"></i>
-                            <h3>Agilite</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="valeur">
-                            <i class="bi bi-shield"></i>
-                            <h3>Responsabilite</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="valeur">
-                            <i class="bi bi-gear"></i>
-                            <h3>Efficacite</h3>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
-            <div class="col-md-6">
-                <img src="https://img.freepik.com/free-photo/group-diverse-people-having-business-meeting_53876-25060.jpg"
-                    alt="img">
-            </div>
-        </div>
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+    <div class="row gy-4 align-items-center features-item">
+      <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
+        <img src="{% static 'assets/img/about.jpg'%}" class="img-fluid" alt="">
+      </div>
+      <div class="col-lg-6 content order-last  order-lg-first">
+        <h3>Presentation de l'entreprise</h3>
+        <p class="text-justify">
+          Créée en 2014, R&S TELECOM est une jeune dynamique entreprise spécialisée dans le conseil et le service
+          numérique, accompagne ses clients dans leurs projets de transformation digitale en fournissant les talents
+          adaptées pour répondre aux différents enjeux stratégique dans le monde de la technologie.
+          R&S TELECOM établit une relation de transparence basée sur la confiance et la collaboration dans ses
+          interaction avec ses clients et collaborateurs.
+          Engagement, excellence et efficacité font le cœur de notre métier qui vise à augmenter la performance des
+          solutions IT pour assurer le succès des projets de nos clients qui provient de différents secteurs d'activité
+        </p>
+      </div>
     </div>
-    
+  </div>
+</section>
+<section id="service" class="services pt-0">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <span>Nos services</span>
+      <h2>Nos services</h2>
+
+    </div>
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card">
+          <div class="card-img">
+            <img src="{% static 'images/services/conseil.jpg' %}" alt="" class="img-fluid">
+          </div>
+          <h3><a href="#" class="stretched-link">Expertise technique et conseil </a></h3>
+          <p>Notre service combine la mise à disposition de professionnels qualifiés dans divers domaines, allant de la
+            gestion à la technologie, pour résoudre efficacement vos défis et vous aider à atteindre vos objectifs.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card">
+          <div class="card-img">
+            <img src="{% static 'images/services/project-management.jpg' %}" alt="" class="img-fluid">
+          </div>
+          <h3><a href="#" class="stretched-link">Gestion de projet</a></h3>
+          <p>Nous excellons dans la gestion globale de vos projets d'envergure en assurant un chiffrage précis, un
+            cadrage optimal, un suivi rigoureux et une réalisation impeccable des objectifs fixés.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="card">
+          <div class="card-img">
+            <img src="{% static 'images/services/carriere.jpg' %}" alt="" class="img-fluid">
+          </div>
+          <h3><a href="#" class="stretched-link">Cyber sécurité</a></h3>
+          <p>Nous vous proposons de mettre en place, par nos experts, une offre de sécurité afin de protéger la surface
+            d'attaque de votre architecture informatique.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="team pt-0">
+  <div class="container py-5" data-aos="fade-up">
+    <header class="mb-5 text-center">
+      <div class="row">
+        <div class="col-lg-7 mx-auto">
+
+          <div class="section-header">
+            <span>FIABLE &amp; DIGNE DE CONFIANCE</span>
+            <h2>FIABLE &amp; DIGNE DE CONFIANCE</h2>
+      
+          </div>
+          <!-- <p class="h6 text-uppercase text-primary">FIABLE &amp; DIGNE DE CONFIANCE</p> -->
+          <!-- <h2>Nous recherchons une approche spécifique pour chaque cas</h2> -->
+          <!-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p> -->
+        </div>
+      </div>
+    </header>
+    <div class="row align-items-stretch gy-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-4">
+        <div class="bg-white h-100">
+          <div class="bg-primary  d-inline-block" style="width: 100px;height: 100px;">
+            <svg class="svg-icon text-white">
+              <use xlink:href="#arrow-target-1"> </use>
+            </svg>
+            <!-- <div class="">
+              <img src="{% static 'images/expertise/mission.png'%}" style="object-fit: cover();" alt="">
+
+            </div> -->
+          </div>
+          <div class="px-5 pt-3 pb-5 bg-white text-center">
+            <h2 class="h4 mb-3">Nos missions</h2>
+            <p class="text-muted text-sm mb-0 text-wrap"><strong class="fst-italic">“Transformez vos idées en solution numérique afin d'assurer la réussite de vos projets”</strong><br>
+              Nous nous engageons à saisir vos idées et les traduire en solutions concrètes dans le monde numérique, en accordant une priorité absolue à la réussite de vos projets de transformation digitale.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-white h-100">
+          <div class="bg-primary d-inline-block" style="width: 100px;height: 100px;">
+            <svg class="svg-icon text-white">
+              <use xlink:href="#stack-1"> </use>
+            </svg>
+          </div>
+          <div class="px-5 pt-3 pb-5 bg-white text-center">
+            <h2 class="h4 mb-3">Nos engagements et certifications</h2>
+            <p class="text-muted text-sm mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, nobis aliquid iusto quibusdam, neque obcaecati delectus. Aliquid veritatis, quo, dignissimos quam magni debitis, minima blanditiis pariatur quae molestiae cumque amet?</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-white h-100">
+          <div class="bg-primary d-inline-block" style="width: 100px;height: 100px;">
+            <svg class="svg-icon text-white">
+              <use xlink:href="#sales-up-1"> </use>
+            </svg>
+          </div>
+          <div class="px-5 pt-3 pb-5 bg-white text-center">
+            <h2 class="h4 mb-3">Notre vision</h2>
+            <p class=" text-sm mb-0">Nous nous distinguons par notre engagement à fournir des services exceptionnels en mettant en œuvre un ensemble de valeurs fondamentales. Ces valeurs se manifestent à travers notre capacité à :
+            </p>
+            <p>
+              <ul>
+                <li>Délivrer les compétences avec pertinence et rapidité</li>
+                <li>Créer des partenariats de qualité</li>
+                <li>Collaborer avec loyauté et efficacité</li>
+                <li>Exécuter nos services avec excellenece</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {%endblock %}

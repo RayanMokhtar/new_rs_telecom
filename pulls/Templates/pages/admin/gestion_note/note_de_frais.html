@@ -1,0 +1,192 @@
+{% extends 'layouts/bases.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">R&S TELECOM</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Application</a></li>
+                    <li class="breadcrumb-item active">Note de frais</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Note de frais</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-8">
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tous les types 
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-animated">
+                                <a class="dropdown-item" href="#">Restaurant</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">....</a>
+                            </div>
+                        </div>
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tous les status
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-animated">
+                                <a class="dropdown-item" href="#">Restaurant</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">....</a>
+                            </div>
+                        </div>
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Avril 2022 
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-animated">
+                                <a class="dropdown-item" href="#">Restaurant</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">....</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text-sm-end">                        
+                            <a href="javascript:void(0);" class="btn btn-primary mb-2"  data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-plus-circle me-2"></i>Ajouter une note de frais </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="d-flex justify-content-center">
+                    <div class="mb-3 text-center text-uppercase w-25">
+                        <label class="h3">CRA-Février 2024</label>
+                        <input type="text" class="form-control date text-center" id="daterangetime" data-toggle="date-picker" data-time-picker="true" data-locale="{'format': 'DD/MM hh:mm A'}">
+                    </div>
+                </div> -->
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="buttons-table-preview">
+                        <table id="datatable-buttons" class="table table-striped dt-responsive table-centered nowrap w-100">
+                            <thead >
+                                <tr>
+                                    <th>Employe</th>
+                                    <th>Periode</th>
+                                    <th>type</th>
+                                    <th>Montant</th>
+                                    <th>Status</th>
+                                    <th>Description</th>
+                                    <th>Justificatif</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MBA ASSEKO Leprince</td>
+                                    <td>Mai 2022</td>
+                                    <td>Deplacement</td>
+                                    <td>70.00 &euro;</td>
+                                    <td class="text-warning">En attende de validation</td>
+                                    <td>Fiche du 05/05/2022 - Repas client</td>
+                                    <td>Note de frais1.png</td>
+                                    <td class="table-action">
+                                        <a href="#" class="action-icon"  data-bs-toggle="modal" data-bs-target="#multiple-one"> <i class="mdi mdi-eye"></i></a>
+                                        <a href="#" class="action-icon"> <i class="mdi mdi-check-all text-success"></i></a>
+                                        <a href="#" class="action-icon"> <i class="mdi mdi-close-thick text-danger"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                                           
+                    </div>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center pagination-rounded mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
+                        <li class="page-item "><a class="page-link" href="javascript: void(0);">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+<div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="info-header-modalLabel">Ajout Note de frais</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form class="ps-3 pe-3" action="#">
+                    <div class="row mb-3">
+                        <label for="username" class="col-4 col-form-label">Types</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select">
+                                <option selected disabled >Selectionner le type de note</option>
+                                <option value="RTT">Transport</option>
+                                <option value="Malade">Repas</option>
+                                <option value="CP">Telephonie</option>
+                                <option value="CP2">materiel</option>
+                                <option value="CP3">Autres</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="example-textarea" class="col-4 col-form-label">Description</label>
+                        <div class="col-8">
+                            <textarea class="form-control" id="example-textarea" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="example-montant" class="col-4 col-form-label">Montant</label>
+                        <div class="col-8">
+                            <input type="text" id="example-montant" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="dateEnd" class="col-4 col-form-label">Date</label>
+                        <div class="col-8">
+                            <input class="form-control" id="dateEnd" type="date" name="date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="example-justificatif" class="col-4 col-form-label">Justificatif</label>
+                        <div class="col-8">
+                            <input type="file" id="example-fileinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="example-select" class="col-4 col-form-label">Status RH</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select" disabled>
+                                <option selected>Demandé</option>
+                                <option>Accordé</option>
+                                <option>Refusé</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

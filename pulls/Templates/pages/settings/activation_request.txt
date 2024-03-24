@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{ fullname }},
+    Merci de nous rejoindre.
+    Veuillez cliquer sur le bouton suivant pour confirmer votre inscription...
+    
+    
+    Au fait, si le bouton ci-dessus n'est pas cliquable, collez le lien suivant dans votre navigateur.
+    http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+               
+
+R&S TELECOM 
+{% endautoescape %}

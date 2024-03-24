@@ -1,0 +1,296 @@
+{% extends 'layouts/bases.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">R&S TELECOM</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Application</a></li>
+                    <li class="breadcrumb-item active">Demande de congés</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Demande de congés</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#info-header-modal"><i class="mdi mdi-plus-circle me-2"></i>Demande de congés </a>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="text-sm-end">
+                            <button type="button" class="btn btn-primary mb-2 me-1"><i class="mdi mdi-cog"></i></button>
+                            <button type="button" class="btn btn-light mb-2 me-1">Import</button>
+                            <button type="button" class="btn btn-light mb-2">Export</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="d-flex justify-content-center">
+                    <div class="mb-3 text-center text-uppercase w-25">
+                        <label class="h3">CRA-Février 2024</label>
+                        <input type="text" class="form-control date text-center" id="daterangetime" data-toggle="date-picker" data-time-picker="true" data-locale="{'format': 'DD/MM hh:mm A'}">
+                    </div>
+                </div> -->
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="buttons-table-preview">
+                        <table id="datatable-buttons" class="table table-striped dt-responsive table-centered nowrap w-100">
+                            <thead >
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Client</th>
+                                    <th>Status</th>
+                                    <th>Date de congés</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MBA ASSEKO</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>02/19/2024 - 02/19/2024</td>
+                                    <td class="table-action">
+                                        <a href="#" class="action-icon"  data-bs-toggle="modal" data-bs-target="#multiple-one"> <i class="mdi mdi-eye"></i></a>
+                                        <a href="#" class="action-icon"> <i class="mdi mdi-download"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>63</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-download"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td>66</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Herrod Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                    <td>59</td>
+                                    <td>02/01/2024 - 02/29/2024</td>
+                                    <td class="table-action">
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                                           
+                    </div>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center pagination-rounded mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
+                        <li class="page-item "><a class="page-link" href="javascript: void(0);">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+<div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="info-header-modalLabel">Demande de congés</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form class="ps-3 pe-3" action="#">
+                    <div class="row mb-3">
+                        <label for="username" class="col-4 col-form-label">Absence</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select">
+                                <option selected >Selectionner le type de congé</option>
+                                <option value="RTT">congé suplementaire</option>
+                                <option value="Malade">Arret maladie</option>
+                                <option value="CP">congé payé </option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-4 col-form-label">Date de debut</label>
+                        <div class="col-8">
+                            <input class="form-control" id="example-date" type="date" name="date">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="dateEnd" class="col-4 col-form-label">Date de fin</label>
+                        <div class="col-8">
+                            <input class="form-control" id="dateEnd" type="date" name="date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="example-select" class="col-4 col-form-label">Status RH</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select" disabled>
+                                <option selected>Demandé</option>
+                                <option>Accordé</option>
+                                <option>Refusé</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="multiple-one" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="multiple-oneModalLabel">Validation congés</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form class="ps-3 pe-3" action="#">
+                    <div class="row mb-3">
+                        <label for="username" class="col-4 col-form-label">Absence</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select" disabled>
+                                <option  >Selectionner le type de congé</option>
+                                <option value="RTT" selected>congé suplementaire</option>
+                                <option value="Malade">Arret maladie</option>
+                                <option value="CP">congé payé </option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-4 col-form-label">Date de debut</label>
+                        <div class="col-8">
+                            <input class="form-control" id="example-date" type="date" name="date">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="dateEnd" class="col-4 col-form-label">Date de fin</label>
+                        <div class="col-8">
+                            <input class="form-control" id="dateEnd" type="date" name="date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="username" class="col-4 col-form-label">Nom</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="username" required="" placeholder="Michael Zenaty">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="userfname" class="col-4 col-form-label">prenom</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="userfname" required="" placeholder="Michael Zenaty">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="example-select" class="col-4 col-form-label">Status RH</label>
+                        <div class="col-8">
+                            <select class="form-select" id="example-select">
+                                <option selected>Demandé</option>
+                                <option>Accordé</option>
+                                <option>Refusé</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-target="#multiple-two" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div id="multiple-two" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-twoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-twoModalLabel">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mt-0">Text in a modal</h5>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+{%endblock%}

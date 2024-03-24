@@ -1,0 +1,38 @@
+<div class="topnav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark navbar-expand-lg topnav-menu">
+
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{% url 'dashboard'%}" id="topnav-dashboards" role="button">
+                            <i class="uil-dashboard me-1"></i>Dashboards 
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-apps" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-apps me-1"></i>Applications <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-apps">
+                            <a href="{% url 'cra'%}" class="dropdown-item">Gestion de CRA</a>  
+                            <a href="{% url 'conge' %}" class="dropdown-item">Gestion de damande de congés</a>  
+                            <a href="{% url 'fiche_paie' %}" class="dropdown-item">Gestion de fiche de paie</a> 
+                            <a href="{% url 'note_frais' %}" class="dropdown-item">Gestion de note de frais</a> 
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-user me-1"></i>Profile <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+                            <div class="dropdown">
+                            <a href="#" class="dropdown-item">Informations</a>
+                            <a href="#" class="dropdown-item">Télécharger une attestation employeur</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

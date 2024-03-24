@@ -1,0 +1,160 @@
+{% extends 'layouts/bases.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <form class="d-flex">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-light" id="dash-daterange">
+                        <span class="input-group-text bg-primary border-primary text-white">
+                            <i class="mdi mdi-calendar-range font-13"></i>
+                        </span>
+                    </div>
+                    <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                        <i class="mdi mdi-autorenew"></i>
+                    </a>
+                    <a href="javascript: void(0);" class="btn btn-primary ms-1">
+                        <i class="mdi mdi-filter-variant"></i>
+                    </a>
+                </form>
+            </div>
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card widget-flat">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="mdi mdi-account-multiple widget-icon"></i>
+                        </div>
+                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Employé-es</h5>
+                        <h3 class="mt-3 mb-3">{{count_users}}</h3>
+                        <p class="mb-0 text-muted">
+                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
+                            <span class="text-nowrap">Depuis le mois dernier</span>  
+                        </p>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+
+            <div class="col-lg-3">
+                <div class="card widget-flat">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="mdi mdi-account-multiple widget-icon"></i>
+                        </div>
+                        <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Collaborateur</h5>
+                        <h3 class="mt-3 mb-3">{{colab_users}}</h3>
+                        <p class="mb-0 text-muted">
+                            <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
+                            <span class="text-nowrap">Depuis le mois dernier</span>
+                        </p>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+
+            <div class="col-lg-3">
+                <div class="card widget-flat">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="mdi mdi-pulse widget-icon"></i>
+                        </div>
+                        <h5 class="text-muted fw-normal mt-0" title="Growth">Croissance</h5>
+                        <h3 class="mt-3 mb-3">{{croissance}}%</h3>
+                        <p class="mb-0 text-muted">
+                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
+                            <span class="text-nowrap">Depuis le mois dernier</span>
+                        </p>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> 
+            <div class="col-lg-3">
+                <div class="card widget-flat">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="mdi mdi-currency-eur widget-icon"></i>
+                        </div>
+                        <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
+                        <h3 class="mt-3 mb-3">6,254 &euro;</h3>
+                        <p class="mb-0 text-muted">
+                            <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
+                            <span class="text-nowrap">Depuis le mois dernier</span>
+                        </p>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+        </div>
+            <!-- end col-->
+
+    </div> <!-- end col -->
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    
+                    <div class="col-sm-12">
+                        <div class="text-sm-end">
+                            <button type="button" class="btn btn-primary mb-2 me-1"><i class="mdi mdi-cog"></i></button>
+                            <button type="button" class="btn btn-light mb-2 me-1">Import</button>
+                            <button type="button" class="btn btn-light mb-2">Export</button>
+                        </div>
+                    </div><!-- end col-->
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
+                        <thead>
+                            <tr>
+                                <th>Employer</th>
+                                <th>Numero</th>
+                                <th>Email</th>
+                                <th>Adresse</th>
+                                <th>Arrivee</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in users_all %}
+                            <tr>
+                                <td class="table-user">
+                                    <a href="#" class="text-body fw-semibold">{{i.users_name}} {{i.users_fname}} </a>
+                                </td>
+                                <td>
+                                    {% if i.users_phone %} {{i.users_phone}} {% else%} Aucun contact disponible {%endif%} 
+                                </td>
+                                <td>
+                                    {{i.users_mail}} </a>
+                                </td>
+                                </td>
+                                <td>
+                                    {% if i.users_region %} {{i.users_address}}{{i.users_postal}}{{i.users_region}} {% else%} Aucune adresse disponible {%endif%} 
+                                </td>
+                                <td>
+                                    {{i.created_date | date:"F Y"}}
+                                </td>
+                                <td>
+                                    <span class="badge badge-success-lighten"> {% if i.users_is_active%} Activé {% else%} Désactivé {%endif%} </a>
+                                    </td></span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</div>
+
+
+{%endblock%}

@@ -1,80 +1,173 @@
 {% load static %}
+{% if head %}
+
+
 <section id="particles-js" class="d-flex bg-md-full">
+    
     <div class="left-block" data-aos="zoom-in-down" data-aos-duration="3000">
         <div class="container">
             <div class="row justifify-content-center align-content-center m-3">
                 <div class="text-with text-center align-item-center">
-                    <!-- <h2>Expertise technique & Conseil</h2> -->
                     <h2 class="text-uppercase header-title"><strong id="typewriter"></strong><span class="cursor">|</span></h2>
-                    <!-- <p>Nous mettons à la disposition de nos clients les compétences et les talents adaptés à la complexité de leurs environnements techniques.</p> -->
                     <p><span id="typewriterp"></span><span class="cursor">|</span></p>
                 </div>
             </div>
         </div>
-        <!-- <h2 class="text-uppercase header-title"><strong id="typewriter"></strong><span class="cursor">|</span></h2>
-        <p><span id="typewriterp"></span><span class="cursor">|</span></p> -->
         <div class="text-center" data-aos="fade-up" data-aos-delay="50">
             <button type="button" id="showemodal" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#formulairemodal">
                 Rejoignez-nous
             </button>
         </div>
-    </div> 
+    </div>
+    
+    
     <video autoplay loop muted class="di-none">
-        <source src="{% static 'video/bg6.mp4' %}" type="video/mp4">
+        <source src="{% static 'video/bg8.mp4' %}" type="video/mp4">
     </video>
-    <div class="js-slider_indicator">
+    <!-- <div class="js-slider_indicator">
         <div class="js-slider-indi indi-1"></div>
         <div class="js-slider-indi indi-2"></div>
         <div class="js-slider-indi indi-3"></div>
-    </div>
+    </div> -->
+    
 </section>
+{% else %}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center">
+        <section id="particles-js" class="d-flex bg-md-full">
+            <div class="container-fluid position-absolute top-50">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-6 text-center text-uppercase">
+                        {% if active_page == 'about' %}
+                            <h2 id="typewriterh2">Qui nous sommes?</h2>
+                            {% elif active_page == 'service' %}
+                            <h2 id="typewriterh2">Nos services</h2>
+                            {% elif active_page == 'expertise' %}
+                            <h2 id="typewriterh2">Nos expertises</h2>
+                            {% elif active_page == 'carriere' %}
+                            <h2 id="typewriterh2">Carrières</h2>
+                            {% elif active_page == 'detail' %}
+                            <h2 class="fs-3" id="typewriterh2">{{poste.0.name}}</h2>
+                            {% elif active_page == 'energie' %}
+                            <h2 id="typewriterh2">Energie & Utilities</h2>
+                            {% elif active_page == 'public' %}
+                            <h2 id="typewriterh2">Secteur Public</h2>
+                            {%else%}
+                            <h2 id="typewriterh2">{{active_page}}</h2>
 
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'Home'%}">Accueil</a></li>
+                {% if active_page == 'about' %}
+                <li>Qui nous sommes?</li>
+                {% elif active_page == 'service' %}
+                <li>Nos services</li>
+                {% elif active_page == 'expertise' %}
+                <li>Nos expertises</li>
+                {% elif active_page == 'carriere' %}
+                <li>Carrières</li>
+                {% elif active_page == 'detail' %}
+                <li>{{poste.0.name}}</li>
+                {% elif active_page == 'public' %}
+                <li><a href="{% url 'expertise'%}">Nos expertises</a></li>
+                <li>Secteur Public</li>
+                {% elif active_page == 'energie' %}
+                <li><a href="{% url 'expertise'%}">Nos expertises</a></li>
+                <li>Energie & Utilities</li>
+                {%else%}
+                <li class="text-capitalize">{{active_page}}</li>
+                {% endif %}
+            </ol>
+        </div>
+    </nav>
+</div>
+{% endif %}
 <!-- Modal -->
 <div class="modal fade" id="formulairemodal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body" id="modal-form">
-                <div class="column" id="main">
+                <div class="column" id="mains">
                     <h1>Bienvenue chez R&S TELECOM</h1>
                     <h3 id="enbleme"></h3>
+                    <div id="alertContainer"></div>
                     <div class="df-switch">
-                        <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false">
+                        <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" aria-label="Mute">
                             <span class="inner-handle"></span>
                             <span class="handle"></span>
                         </button>
                     </div>
-
-                    <form>
+                    <form id="formClient" class="formClient d-none" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="form-group m-3">
-                            <label for="InputfirstName">Prenom</label>
-                            <input type="text" class="form-control" id="InputfirstName" placeholder="Votre nom..">
+                            <label class="label-form" for="InputfirstNamep">Prenom</label>
+                            <input type="text" class="form-control input-form" id="InputfirstNamep" placeholder="Votre nom..">
                         </div>
                         <div class="form-group m-3">
-                            <label for="InputName">Nom</label>
-                            <input type="text" class="form-control" id="InputName" placeholder="Votre nom..">
+                            <label class="label-form" for="InputNamep">Nom</label>
+                            <input type="text" class="form-control input-form" id="InputNamep" placeholder="Votre nom..">
                         </div>
-                        <div class="form-group m-3 client d-none">
-                            <label for="InputCompagny">Societe</label>
-                            <input type="text" class="form-control" id="InputCompagny" placeholder="Votre entreprise..">
+                        <div class="form-group m-3 client">
+                            <label class="label-form" for="InputCompagny">Societe</label>
+                            <input type="text" class="form-control input-form" id="InputCompagny" placeholder="Votre entreprise..">
                         </div>
-                        <div class="form-group m-3 client d-none">
-                            <label for="InputEmailp">E-mail professionnel</label>
-                            <input type="email" class="form-control" id="InputEmailp" placeholder="Votre E-mail professionnel...">
+                        <div class="form-group m-3 client">
+                            <label class="label-form" for="InputEmailp">E-mail professionnel</label>
+                            <input type="email" class="form-control input-form" id="InputEmailp" placeholder="Votre E-mail professionnel...">
+                        </div>
+                        <div class="form-group m-3">
+                            <label class="label-form" for="InputMessagep">Message</label>
+                            <textarea name="InputMessage" id="InputMessagep" class="form-control input-form" cols="20" rows="3"></textarea>
+                        </div>
+                        <div class="form-group m-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                <label class="form-check-label" for="checkbox-signup">J'accepte <a href="javascript: void(0);" class="text-muted">les termes et conditions</a></label>
+                            </div>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="button" id="sendClient" class="btn btn-primary" value="Soumettre">
+                        </div>
+                    </form>
+                    <form id="formCandidat" class="formCandidat" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group m-3">
+                            <label class="label-form" for="InputfirstName">Prenom</label>
+                            <input type="text" class="form-control input-form" id="InputfirstName" placeholder="Votre nom..">
+                        </div>
+                        <div class="form-group m-3">
+                            <label class="label-form" for="InputName">Nom</label>
+                            <input type="text" class="form-control input-form" id="InputName" placeholder="Votre nom..">
                         </div>
                         <div class="form-group m-3 condidat">
-                            <label for="InputEmail">E-mail </label>
-                            <input type="email" class="form-control" id="InputEmail" placeholder="Votre E-mail...">
+                            <label class="label-form" for="InputEmail">E-mail </label>
+                            <input type="email" class="form-control input-form" id="InputEmail" placeholder="Votre E-mail...">
                         </div>
                         <div class="form-group m-3 condidat">
-                            <label for="InputCv">CV</label>
-                            <input id="InputCv" class="demo1" type="file" placeholder="Ajouter votre cv (.pdf)" name="demo1" />
+                            <label class="label-form" for="InputCv">CV</label>
+                            <!-- <input id="InputCv" class="demo1" type="file" placeholder="Ajouter votre cv (.pdf)" name="demo1" /> -->
+                            <!-- <input type="file" name="" id=""> -->
+                            <input type="file" name="cv" class="form-control" id="InputCv" placeholder="Ajouter votre cv (.pdf)">
                         </div>
                         <div class="form-group m-3">
-                            <label for="InputMessage">Message</label>
-                            <textarea name="InputMessage" id="InputMessage" class="form-control" cols="20" rows="3"></textarea>
+                            <label class="label-form" for="InputMessage">Message</label>
+                            <textarea name="InputMessage" id="InputMessage" class="form-control input-form" cols="20" rows="3"></textarea>
                         </div>
                         <div class="form-group m-3">
-                            <input type="submit" id="submit" class="btn btn-primary" value="Soumettre">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                <label class="form-check-label" for="checkbox-signup">J'accepte <a href="javascript: void(0);" class="text-muted">les termes et conditions</a></label>
+                            </div>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="button" id="sendCandidat" class="btn btn-primary" value="Soumettre">
                         </div>
                     </form>
                 </div>
@@ -88,7 +181,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="column di-none" id="secondary">
+                <div class="column di-none" id="secondary"> 
                     <div class="sec-content">
                         <h2 id="title" class="mp-3">Augmentez vos chances d'être contacté par un recruteur</h2>
                         <h3>Chaque mois près de 20 000 nouveaux profils sont publiés sur R&S TELECOM</h3>

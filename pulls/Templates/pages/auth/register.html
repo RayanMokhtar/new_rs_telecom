@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-xxl-4 col-lg-5">
+    <div class="card">
+        <!-- Logo-->
+        <div class="card-header pt-4 pb-4 text-center bg-primary">
+            <a href="{% url 'Home'%}" class="text-light font-weight-bold">
+                Ｒ＆Ｓ ＴＥＬＥＣＯＭ
+
+            </a>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="text-center w-75 m-auto">
+                <h4 class="text-dark-50 text-center mt-0 fw-bold">Nouveau ici?</h4>
+                <p class="text-muted mb-4">Vous n'avez pas de compte ? Créez votre compte, cela prend moins d'une minute </p>
+            </div>
+            <div id="container-error"></div>
+            <form id="signupForm" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Prénom </label>
+                    {{ form.fname }}
+                </div>
+                <div class="mb-3">
+                    <label for="lname" class="form-label">Nom</label>
+                    {{ form.lname }}
+                </div>
+                <div class="mb-3">
+                    <label for="emailaddress" class="form-label">Email address</label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <div class="input-group input-group-merge">
+                        {{ form.password }}
+                        <div class="input-group-text" data-password="false">
+                            <span class="password-eye"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        {{form.accept_terms}}
+                        <label class="form-check-label" for="checkbox-signup">J'accepte <a href="#" class="text-muted">tous les termes et conditions
+                        </a></label>
+                    </div>
+                </div>
+                <div class="mb-3 text-center">
+                    <button class="btn btn-primary" type="submit">Inscription</button>
+                </div>
+            </form>
+        </div> <!-- end card-body -->
+    </div>
+    <!-- end card -->
+
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <p class="text-muted">Vous avez déjà un compte? <a href="{% url 'login' %}" class="text-muted ms-1"><b>Connexion</b></a></p>
+        </div> <!-- end col-->
+    </div>
+    <!-- end row -->
+</div>
+{% endblock %}

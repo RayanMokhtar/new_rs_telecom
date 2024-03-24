@@ -1,56 +1,40 @@
 {% load static %}
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent ">
-  <div class="container">
-    <a class="navbar-brand fs-4" href="{% url 'Home' %}">
-      <div class="navbar-logo-container">
-        <img class="navbar-logo float-center" src="{% static 'images/logo.png' %}" height="90" width="105" alt="R&S-TELECOM">
-      </div>
-    </a>
-    <button class="navbar-toggler custom-toggler shadow-none border-0 ml-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-      <!-- <span class="navbar-toggler-icon"></span> -->
-      <span class="navbar-toggler-icon my-toggler"></span>
-    </button>
-    <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header border-bottom">
-        <a class="offcanvas-title" id="offcanvasNavbarLabel" href="{% url 'Home' %}">
-          <div class="navbar-logo-container">
-            <img class="navbar-logo float-center" src="{% static 'images/logo.png' %}" height="90" width="105" alt="R&S-TELECOM">
-          </div>
-        </a>
-        <button type="button" class="btn-close btn-close-white text-reset shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <!-- body -->
-      <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-        <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3" style="margin-right: 0;">
-          <li class="nav-item mx-2">
-            <a class="nav-link"
-              href="{% url 'about' %}">Qui nous sommes?</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link "
-              href="#">Nos services</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link "
-              href="#">Nos expertise</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link "
-              href="#">Carriere</a>
-          </li>
-         
-          <li class="nav-item mx-2">
-            <a class="nav-link "
-              href="#">Contact</a>
-          </li>
-        </ul>
-        <div class="d-flex justify-content-center align-items-center gap-3">
-          <a href="#" class="btn btn-primary rounded-pill" data-oas="fade-up">Connexion</a>
-        </div>
-      </div>
-    </div>
+    <a class="navbar-brand fs-3 text-light fw-bold" href="{% url 'Home' %}">
+      R&S TELECOM
+    </a>
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li class="nav-item mx-2">
+          <a class="nav-link {% if head %}active{% endif %}"
+            href="{% url 'Home' %}">Accueil</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link {% if active_page == 'about' %}active{% endif %}"
+            href="{% url 'about' %}">Qui nous sommes?</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link {% if active_page == 'expertise' %}active{% endif %}"
+            href="{% url 'expertise' %}">Nos expertises</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link {% if active_page == 'carriere' %}active{% endif %}"
+            href="{% url 'carriere' %}">Carrières</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link {% if active_page == 'contact' %}active{% endif %}"
+            href="{% url 'contact' %}">Contact</a>
+        </li>
+        <li> <a class="get-a-quote rounded-pill " href="{% url 'login' %}">Connexion</a></li>
+      </ul>
+    </nav><!-- .navbar -->
+
   </div>
-</nav>
+</header>
 <!-- NAVBAR -->

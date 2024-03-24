@@ -1,0 +1,64 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} R&S TELECOM | Detail {% endblock %}
+{% block content %}
+<section id="service-details" class="service-details">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <span>Nos offres d'emploi</span>
+            <h2>Nos offres d'emploi</h2>
+        </div>
+      <div class="row gy-4">
+        <div class="col-lg-3 col-xxl-3">
+            <div class="card d-block">
+                <img class="card-img-top" src="https://www.rs-telecom.fr/website_hr_recruitment/static/src/img/job_image_1.jpg" alt="project image cap">
+                <div class="card-body position-relative">
+                    <h4 class="mt-0 text-center">
+                        <a href="{% url 'contact'%}" class="text-title ">Nous rejoindre</a>
+                    </h4>
+                    <p class="mb-3">
+                        Rejoingnez une équipe d'experts talentueux, compétents et expérimentés dans le domaine des technologies de l'information et des télécommunications
+                    </p>
+                </div> 
+            </div>
+        </div>
+
+        <div class="col-xxl-9 col-xl-9">
+            <!-- project card -->
+            <div class="card d-block">
+                <div class="card-body">
+                    <div class="clearfix"></div>
+                    <h3>{{poste.0.name}}</h3>
+                    <div class="row d-flex justify-content-between pb-3">
+                        <div class="col-6 align-items-end">
+                            <p class="mt-2 mb-1 text-muted fw-bold font-12 text-uppercase">Tranferer par :</p>
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="mt-1 fs-6">
+                                        {{poste.0.alias_user_id.1}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 align-items-end">
+                            <p class="mt-2 mb-1 text-muted fw-bold font-12 text-uppercase">Date d'échéance</p>
+                            <div class="d-flex">
+                                <i class='fa fa-calendar text-success me-1'></i>
+                                <div class="text-center">
+                                    <h5 class="mt-1 fs-6">
+                                        {{poste.0.write_date}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'postuler' id_post=poste.0.id %}" class="btn btn-primary position-relative" ><span>Postuler maintenant</span> </a>
+                    <div class="container">
+                        {{poste.0.website_description | safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock %}

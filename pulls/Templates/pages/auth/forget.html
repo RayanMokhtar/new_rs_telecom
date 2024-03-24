@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-xxl-4 col-lg-5">
+    <div class="card">
+        <!-- Logo -->
+        <div class="card-header pt-4 pb-4 text-center bg-primary">
+            <a href="{% url 'Home'%}" class="text-light font-weight-bold">
+                R&S TELECOM
+            </a>
+        </div>
+        
+        <div class="card-body p-4">
+            
+            <div class="text-center w-75 m-auto">
+                <h4 class="text-dark-50 text-center mt-0 fw-bold">Mot de passe oublié ?</h4>
+                <p class="text-muted mb-4">Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.</p>
+            </div>
+
+            <form action="#">
+                <div class="mb-3">
+                    <label for="emailaddress" class="form-label">Adresse email</label>
+                    <input class="form-control" type="email" id="emailaddress" required="" placeholder="Entrez votre email">
+                </div>
+
+                <div class="mb-0 text-center">
+                    <button class="btn btn-primary" type="submit">Reinitialiser</button>
+                </div>
+            </form>
+        </div> <!-- end card-body-->
+    </div>
+    <!-- end card -->
+
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <p class="text-muted">Vous vous souvenez du mot de passe ? <a href="{% url 'login'%}" class="text-muted ms-1"><b>Connexion</b></a></p>
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+{% endblock %}

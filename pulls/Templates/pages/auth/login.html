@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-xxl-4 col-lg-5">
+    <div class="card">
+
+        <!-- Logo -->
+        <div class="card-header pt-4 pb-4 text-center bg-primary">
+            <a href="{% url 'Home'%}" class="text-light font-weight-bold">
+                R&S TELECOM
+            </a>
+        </div>
+
+        <div class="card-body p-4">
+            
+            <div class="text-center w-75 m-auto">
+                <h4 class="text-dark-50 text-center pb-0 fw-bold">Connexion</h4>
+                <p class="text-muted mb-4">Bienvenue sur votre espace personnel</p>
+            </div>
+            {% if messages %}
+
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <i class="dripicons-checkmark me-2"></i> {{message}}
+            </div>
+            {% endfor %}
+            
+            {% else %}
+            {% endif %}
+            <div id="container-error"></div>
+            <form id="form" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="emailaddress" class="form-label">Adresse email</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                    <a href="{% url 'forget'%}" class="text-muted float-end"><small>Mot de passe oublié?</small></a>
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <div class="input-group input-group-merge">
+                        {{ form.password }}
+                        <div class="input-group-text" data-password="false">
+                            <span class="password-eye"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 mb-0 text-center">
+                    <button class="btn btn-primary" id="submitLogin" type="submit"> Se connecter </button>
+                </div>
+
+            </form>
+        </div> <!-- end card-body -->
+    </div>
+    <!-- end card -->
+
+    <!-- <div class="row mt-3">
+        <div class="col-12 text-center">
+            <p class="text-muted">Pas encore de compte?<a href="{% url 'login' %}" class="text-muted ms-1"><b>Inscription</b></a></p>
+        </div> 
+    </div> -->
+    <!-- end row -->
+
+</div>
+{% endblock %}
