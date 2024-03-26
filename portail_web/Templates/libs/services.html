@@ -15,7 +15,7 @@
                 <form action="{% url 'offre' %}" method="post" class="php-email-form">
                     {% csrf_token %} 
                     <h3>Formulaire de recrutement </h3>
-                    <p>Postes / {{poste.0.name}} </p>
+                    <p>Postes / <strong id="poste">{{poste.0.name}} </strong></p>
                     <div class="row gy-4">
 
                     <div class="col-md-6">
@@ -59,8 +59,7 @@
                     </div>
                 </form>
             </div>
-        </div><!-- End Quote Form -->
-
+        </div>
       </div>
 
     </div>

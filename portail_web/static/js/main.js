@@ -347,30 +347,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
  function expertise() {
-     fetch('static/js/data/data.json')
-    .then(response => response.json())
-    .then(data => {
-      const contentDiv = document.getElementById('content');
-      data.forEach(item => {
-        contentDiv.innerHTML += `
-          <div class="col-12 col-md-4 p-4">
-            <div class="card border-0 ">
-              <div class="card-body text-justify-center p-5">
-                <h4 class="fw-bold text-uppercase mb-4">${item.title}</h4>
-                <p class="mb-4 text-secondary">${item.description}</p>
-                <a href="${item.link}" class="fw-bold text-decoration-none link-primary">
-                  En savoir plus
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                  </svg>
-                </a>
-              </div>
+    try {
+        fetch('static/js/data/data.json')
+        .then(response => response.json())
+        .then(data => {
+        const contentDiv = document.getElementById('content');
+        data.forEach(item => {
+            contentDiv.innerHTML += `
+            <div class="col-12 col-md-4 p-4">
+                <div class="card border-0 ">
+                <div class="card-body text-justify-center p-5">
+                    <h4 class="fw-bold text-uppercase mb-4">${item.title}</h4>
+                    <p class="mb-4 text-secondary">${item.description}</p>
+                    <a href="${item.link}" class="fw-bold text-decoration-none link-primary">
+                    En savoir plus
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                    </svg>
+                    </a>
+                </div>
+                </div>
             </div>
-          </div>
-        `;
-      });
-    })
-    .catch(error => console.error('Error:', error));
+            `;
+        });
+        })
+        .catch(error => console.error('Error:', error));
+    } catch (error) {
+        console.error('message indique ' + error)
+    }
     
 }
 

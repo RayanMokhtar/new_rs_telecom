@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  let forms = document.querySelectorAll('.php-email-form');
+  let forms = document.querySelectorAll('.php-email-form'); 
 
   forms.forEach( function(e) {
     console.log(e);
@@ -27,6 +27,8 @@
       thisForm.querySelector('.sent-message').classList.remove('d-block');
 
       let formData = new FormData(thisForm);
+      
+      const candit_for_post=document.getElementById('poste');
 
       if ( recaptcha ) {
         if(typeof grecaptcha !== "undefined" ) {
@@ -35,6 +37,9 @@
               grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
               .then(token => {
                 formData.set('recaptcha-response', token);
+                if(candit_for_post){
+                  formData.set('candit_for_post', candit_for_post.value);
+                }
                 php_email_form_submit(thisForm, action, formData);
               })
             } catch(error) {
@@ -45,6 +50,9 @@
           displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
         }
       } else {
+        if(candit_for_post){
+          formData.set('candit_for_post', candit_for_post.innerText);
+        }
         php_email_form_submit(thisForm, action, formData);
       }
     });
@@ -52,6 +60,7 @@
 
   function php_email_form_submit(thisForm, action, formData) {
     const csrfToken = formData.get('csrfmiddlewaretoken');
+
     fetch(action, {
       method: 'POST',
       body: formData,

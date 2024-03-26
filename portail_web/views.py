@@ -206,7 +206,19 @@ def postulerSpontaner(request):
 
 def postulerOffres(request):
     if (request.headers.get('x-requested-with')=='XMLHttpRequest'):
-        fullname = request.POST.get('name')
-        print(fullname)
+        fullname = request.POST.get('name').strip()
+        email = request.POST.get('email').strip()
+        candit_for_post = request.POST.get('candit_for_post').strip()
+        departure = request.POST.get('departure').strip()
+        message = request.POST.get('message').strip()
+        file_path = request.FILES.get('delivery')
+        print(candit_for_post,fullname,departure,message,file_path)
+        print(fullname.split(' '))
+        try :
+            #  user=Postuler.objects.create(email=email)
+            pass
+             
+        except :
+            print('erreur')
         return JsonResponse({'status': True})
     return JsonResponse({'status':False})

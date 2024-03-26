@@ -10,6 +10,7 @@ class Postuler(models.Model):
     cv = models.FileField(upload_to='curriculum_vitae')
     message = models.CharField(max_length=100)
     type_candidat =models.CharField(max_length=50)
+    offre =models.CharField(max_length=50, null=True)
     non_spontaner=models.BooleanField(null=True,default=False)
 
     class Meta:
