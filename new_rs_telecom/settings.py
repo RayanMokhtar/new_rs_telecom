@@ -139,7 +139,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # STATICROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR,'portail_web/static'),
+    os.path.join(BASE_DIR,'pulls/static')
 ]
 
 # Media files

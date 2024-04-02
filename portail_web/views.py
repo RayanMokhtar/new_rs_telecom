@@ -27,44 +27,57 @@ def detailSecteur(request,detail):
     return render(request, 'libs/details_expertise.html',{'active_page': detail})
 
 def carriere(request):
-    common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(settings.URL_ODOO))
-    uid = common.authenticate(settings.DB_ODOO, settings.EMAIL_ODOO_USER, settings.PASSWORD_ODOO, {})
-    models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(settings.URL_ODOO))
-    list_poste = models.execute_kw(settings.DB_ODOO, uid, settings.PASSWORD_ODOO,
-    'hr.job', 'search_read',
-    [[['is_published','=',True], ['website_published', '=', True]]],
-    {'fields': ['display_name', 'create_uid','write_date','new_application_count','application_count', 'website_description','description'], 'limit': 10})
-    
-    poste_write_date = datetime.strptime(list_poste[0]['write_date'], '%Y-%m-%d %H:%M:%S')
-    format_date = poste_write_date.strftime('%d:%m:%Y %H:%M')
-    
-    context={
-        'postes':list_poste,
-        'format_date':format_date,
-
-        'active_page':'carriere'
-    }
-    return render(request, 'libs/carriere.html',context)
+    try:
+        common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(settings.URL_ODOO))
+        uid = common.authenticate(settings.DB_ODOO, settings.EMAIL_ODOO_USER, settings.PASSWORD_ODOO, {})
+        models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(settings.URL_ODOO))
+        list_poste = models.execute_kw(settings.DB_ODOO, uid, settings.PASSWORD_ODOO,
+        'hr.job', 'search_read',
+        [[['is_published','=',True], ['website_published', '=', True]]],
+        {'fields': ['display_name', 'create_uid','write_date','new_application_count','application_count', 'website_description','description'], 'limit': 10})
+        
+        poste_write_date = datetime.strptime(list_poste[0]['write_date'], '%Y-%m-%d %H:%M:%S')
+        format_date = poste_write_date.strftime('%d:%m:%Y %H:%M')
+        
+        context={
+            'postes':list_poste,
+            'format_date':format_date,
+            'active_page':'carriere'
+        }
+        return render(request, 'libs/carriere.html',context)
+    except :
+        list_poste=None
+        context={
+            'postes':list_poste,
+            'active_page':'carriere'
+        }
+        return render(request, 'libs/carriere.html',context)
 
 def getDetail(request,id_post):
     context={}
-    common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(settings.URL_ODOO))
-    print(common)
-    uid = common.authenticate(settings.DB_ODOO, settings.EMAIL_ODOO_USER, settings.PASSWORD_ODOO, {})
-    models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(settings.URL_ODOO))
-    post_data = models.execute_kw(
-        settings.DB_ODOO,
-        uid,
-        settings.PASSWORD_ODOO,
-        'hr.job',
-        'read',
-        [[id_post]],
-    )
-    context={
-        'active_page':'detail',
-        'poste':post_data
-    }
-    return render(request,'libs/detail.html',context)
+    try :
+        common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(settings.URL_ODOO))
+        uid = common.authenticate(settings.DB_ODOO, settings.EMAIL_ODOO_USER, settings.PASSWORD_ODOO, {})
+        models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(settings.URL_ODOO))
+        post_data = models.execute_kw(
+            settings.DB_ODOO,
+            uid,
+            settings.PASSWORD_ODOO,
+            'hr.job',
+            'read',
+            [[id_post]],
+        )
+        context={
+            'active_page':'detail',
+            'poste':post_data
+        }
+        return render(request,'libs/detail.html',context)
+    except :
+        context={
+            'active_page':'detail',
+            'poste':None
+        }
+        return render(request,'libs/detail.html',context)
 
 def postuler(request,id_post):
     context={}

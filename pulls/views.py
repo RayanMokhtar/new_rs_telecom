@@ -135,10 +135,6 @@ def forget(request):
 
 def logout(request):
     if request.session.get('user_id'):
-        # Déconnexion de l'utilisateur
-        # user = User.objects.filter(id=request.session.get('user_id')).first()
-        # user.is_active=False
-        # user.save()
         request.session.flush()
         messages.success(request, 'Déconnexion réussie.')
         return render(request,'pages/auth/logout.html')

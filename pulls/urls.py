@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     # route de lier au compte
     path('', views.login , name='login'),
-    # path('Inscription', views.register , name='register'),
+    path('Inscription', views.register , name='register'),
     path('Connexion',views.login,name='login'),
     path('logout/', views.logout, name='logout'),
     path('Mot de passe oublier', views.forget , name='forget'),
