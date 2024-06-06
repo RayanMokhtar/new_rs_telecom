@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&S TELECOM - Matching CV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #004083;
+            color: #fff;
+            padding-top: 50px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1, h3, h4, h5 {
+            font-family: 'Georgia', serif;
+            color: #004083;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        p, h6, li {
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #f8f9fa;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .card-body embed {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .loading-spinner {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .loading-spinner img {
+            width: 50px;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: #3498db;
+            border-color: #3498db;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            color: #333;
+            background-color: #ecf0f1;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        #uploaded-cvs .card, #matching-results .card {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            flex: 1;
+            color: #ecf0f1;
+        }
+
+        .form-group .form-control {
+            flex: 4;
+        }
+
+        .form-group .weight-control {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .importance-label {
+            flex: 1;
+            text-align: center;
+            color: #ecf0f1;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .btn {
+            background-color: #2c3e50;
+        }
+
+        .keywords-display {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feedback-message {
+            display: none;
+            margin-top: 10px;
+            color: #28a745;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="mb-4 text-center">R&S TELECOM - Matching CV</h3>
+        <div class="mb-4">
+            <h4>Lead Sélectionné</h4>
+            <p id="lead-description">{{ lead.description_job }}</p>
+            <div class="form-group">
+                <label for="poids_lead" style="color:#004083;">Degré d'importance du Lead :</label>
+                <select class="form-control weight-control" id="poids_lead" name="poids_lead">
+                    <option value="1">Pas très important</option>
+                    <option value="2">Peu important</option>
+                    <option value="3" selected>Modérément important</option>
+                    <option value="4">Important</option>
+                    <option value="5">Très important</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <h4>Mots clés extraits</h4>
+            <div class="form-group">
+                <textarea id="keywords-input" class="form-control" rows="5">{{ keywords }}</textarea>
+            </div>
+            <div id="update-feedback" class="feedback-message text-success" style="display: none;">Mise à jour des mots clés réussie !</div>
+            <div class="form-group">
+                <label for="poids_keywords" style="color:#004083;">Degré d'importance des Mots Clés :</label>
+                <select class="form-control weight-control" id="poids_keywords" name="poids_keywords">
+                    <option value="1">Pas très important</option>
+                    <option value="2">Peu important</option>
+                    <option value="3" selected>Modérément important</option>
+                    <option value="4">Important</option>
+                    <option value="5">Très important</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button class="btn btn-primary" id="update-keywords-button">Mettre à jour les mots clés</button>
+        </div>
+        <hr>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload" type="button" role="tab" aria-controls="upload" aria-selected="true" style='color: #888;'>Uploader les CVs</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="false" style='color: #888;'>Résultats du Matching</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="upload" role="tabpanel" aria-labelledby="upload-tab">
+                <div class="mt-3">
+                    <form id="upload-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="cv_file" style="color:#004083;">Sélectionnez des fichiers PDF :</label>
+                            <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf" multiple required>
+                        </div>
+                        <button type="button" id="add-cv-button" class="btn btn-secondary mt-3">Ajouter les CVs</button>
+                    </form>
+                    <h4 class="mt-5">CVs Uploadés</h4>
+                    <div class="row" id="uploaded-cvs">
+                        <!-- Liste des CVs uploadés -->
+                    </div>
+                    <button type="button" id="matching-button" class="btn btn-primary mt-3">Faire le matching</button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+                <div class="mt-3">
+                    <h4>Résultats du Matching des CVs</h4>
+                    <div class="loading-spinner" id="loading-message">
+                        <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading...">
+                        <p>Le processus peut prendre un peu de temps, veuillez patienter...</p>
+                    </div>
+                    <div class="alert alert-warning" role="alert" style="margin-top: 20px;">
+                        Notez bien que cette technologie n'est pas infaillible , Pensez toujours à optimiser les critéres de votre recherche . Si vous avez des doutes, procédez à une vérification visuelle ou contactez monsieur Rochaida sur l'adresse mail <a href="mailto:jalal.rochaida@rs-telecom.com">jalal.rochaida@rs-telecom.com </a>
+                    </div>
+                    <div class="row" id="matching-results" style="display: none;">
+                        <!-- Résultats du matching -->
+                    </div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center" id="pagination-controls">
+                            <!-- Pagination controls will be inserted here by JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsModalLabel">Détails du Scoring</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="detailsModalBody">
+                        <!-- Détails des mots-clés et scoring -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let uploadedFiles = [];
+            let globalData = null; // Ajout de cette ligne pour rendre les données globales accessibles
+            let currentPage = 1;
+
+            document.getElementById('add-cv-button').addEventListener('click', function() {
+                const fileInput = document.getElementById('cv_file');
+                const uploadedCvsList = document.getElementById('uploaded-cvs');
+
+                for (const file of fileInput.files) {
+                    uploadedFiles.push(file);
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const card = document.createElement('div');
+                        card.classList.add('card', 'col-md-4');
+                        card.innerHTML = `
+                            <div class="card-body">
+                                <embed src="${e.target.result}" type="application/pdf">
+                                <div>
+                                    <h5 class="card-title">${file.name}</h5>
+                                    <button class="btn btn-danger btn-sm" onclick="removeFile('${file.name}')">Supprimer</button>
+                                </div>
+                            </div>
+                        `;
+                        uploadedCvsList.appendChild(card);
+                    };
+                    reader.readAsDataURL(file);
+                }
+                fileInput.value = ''; // reset du fichier output
+            });
+
+            function removeFile(fileName) {
+                uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
+                const uploadedCvsList = document.getElementById('uploaded-cvs');
+                const cards = uploadedCvsList.getElementsByClassName('card');
+                for (const card of cards) {
+                    if (card.querySelector('.card-title').textContent === fileName) {
+                        card.remove();
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('matching-button').addEventListener('click', function() {
+                currentPage = 1;
+                performMatching();
+            });
+
+            function performMatching() {
+                const missionText = document.getElementById('lead-description').textContent;
+                const keywordsText = document.getElementById('keywords-input').value;
+                const poidsLead = document.getElementById('poids_lead').value;
+                const poidsKeywords = document.getElementById('poids_keywords').value;
+
+                if (!missionText) {
+                    alert("Veuillez remplir au moins le champ de mission.");
+                    return;
+                }
+
+                const formData = new FormData();
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+                for (const file of uploadedFiles) {
+                    formData.append('cv_files', file);
+                }
+                formData.append('mission_text', missionText);
+                formData.append('keywords_text', keywordsText);
+                formData.append('poids_lead', poidsLead);
+                formData.append('poids_keywords', poidsKeywords);
+                formData.append('csrfmiddlewaretoken', csrfToken);
+                formData.append('page', currentPage);
+
+                const loadingMessage = document.getElementById('loading-message');
+                const matchingResults = document.getElementById('matching-results');
+
+                // Show loading message
+                loadingMessage.style.display = 'block';
+                matchingResults.style.display = 'none';
+
+                // Switch to results tab
+                var resultsTab = new bootstrap.Tab(document.getElementById('results-tab'));
+                resultsTab.show();
+
+                fetch('/rstelecom/process_matching_v2/', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error('Network response was not ok: ' + response.status + ' ' + text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    globalData = data; // Assigner les données globales ici
+                    const resultsList = document.getElementById('matching-results');
+                    resultsList.innerHTML = '';
+                    
+                    data.results.forEach((result, index) => {
+                        const card = document.createElement('div');
+                        card.classList.add('card', 'col-md-4');
+                        card.innerHTML = `
+                        <div class="card">
+                            <img src="../../static/test/css/image_machine_cv.png" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">${index + 1}. ${result.filename}</h5>
+                                <p><strong>Score:</strong> ${result.score}</p>
+                                <p><strong>Correspondance:</strong> ${result.percentage.toFixed(2)}%</p>
+                                <p><strong>Remarque:</strong> ${result.remark}</p>
+                                <button class="btn btn-info btn-sm" onclick="viewDetails(${index})">Voir Détails</button>
+                            </div>
+                        </div>
+                        `;
+                        resultsList.appendChild(card);
+                    });
+                    setupPagination(data.page, data.total_pages);
+                    matchingResults.style.display = 'flex';
+                    matchingResults.style.flexWrap = 'wrap';
+                    loadingMessage.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            function setupPagination(currentPage, totalPages) {
+                const paginationControls = document.getElementById('pagination-controls');
+                paginationControls.innerHTML = '';
+
+                if (currentPage > 1) {
+                    const prevButton = document.createElement('li');
+                    prevButton.classList.add('page-item');
+                    prevButton.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Précédent</a>`;
+                    paginationControls.appendChild(prevButton);
+                }
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('li');
+                    pageButton.classList.add('page-item', i === currentPage ? 'active' : '');
+                    pageButton.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+                    paginationControls.appendChild(pageButton);
+                }
+
+                if (currentPage < totalPages) {
+                    const nextButton = document.createElement('li');
+                    nextButton.classList.add('page-item');
+                    nextButton.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Suivant</a>`;
+                    paginationControls.appendChild(nextButton);
+                }
+            }
+
+            function changePage(page) {
+                currentPage = page;
+                performMatching();
+            }
+
+            function viewDetails(index) {
+                const result = globalData.results[index];
+                const details = result.keyword_occurrences;
+                
+                let detailsHtml = `
+                    <h5>Détails du CV: ${result.filename}</h5>
+                    <p><strong>Score global:</strong> ${result.score}</p>
+                    <p><strong>Pourcentage de correspondance:</strong> ${result.percentage.toFixed(2)}%</p>
+                    <h6>Mots-clés trouvés :</h6>
+                    <ul>
+                `;
+                
+                for (const [keyword, count] of Object.entries(details)) {
+                    detailsHtml += `<li>${keyword}: ${count} occurrence(s)</li>`;
+                }
+                
+                detailsHtml += `
+                    </ul>
+                    <h6>Répartition des poids :</h6>
+                    <ul>
+                        <li>Lead: ${document.getElementById('poids_lead').value}</li>
+                        <li>Mots Clés: ${document.getElementById('poids_keywords').value}</li>`;
+                    
+                document.getElementById('detailsModalBody').innerHTML = detailsHtml;
+                var detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+                detailsModal.show();
+            }
+
+            document.getElementById('update-keywords-button').addEventListener('click', function() {
+                const keywordsInput = document.getElementById('keywords-input').value.trim();
+                const updateFeedback = document.getElementById('update-feedback');
+                updateFeedback.style.display = 'block';
+                setTimeout(() => {
+                    updateFeedback.style.display = 'none';
+                }, 3000);
+            });
+        </script>
+    </div>
+</body>
+</html>

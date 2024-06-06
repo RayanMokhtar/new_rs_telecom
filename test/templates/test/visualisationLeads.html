@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation Leads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 85%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button.show-more {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.show-more:hover {
+    background-color: #0056b3;
+}
+
+.description {
+    display: none;
+    transition: display 0.3s ease;
+}
+
+form {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+select, input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 48%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button.submit {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+button.submit:hover {
+    background-color: #007BFF;
+}
+
+.btn {
+    text-decoration: none;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#pagination .btn {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+    transition: background-color 0.3s ease;
+}
+
+#pagination .btn:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+#pagination .btn-primary {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+}
+
+#pagination .btn-primary:hover {
+    background-color: #0056b3;
+}
+.submit{
+    background-color: #007BFF;
+    color: white;
+
+}
+.submit:hover{
+    color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Visualisation des Leads</h1>
+    
+    <!-- Formulaire de sélection d'entreprise -->
+    <form id="filterForm" method="get" action="{% url 'visualisation_leads' %}">
+        <select name="entreprise">
+            <option value="">Sélectionnez une entreprise pour visualiser ses statistiques</option>
+            {% for entreprise in entreprises %}
+                <option value="{{ entreprise }}" {% if entreprise == entreprise_selectionnee %}selected{% endif %}>{{ entreprise }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="search" id="searchInput" placeholder="Rechercher par offre, nom, localisation..." value="{{ search_query }}">
+        <button type="submit" class="submit">Filtrer</button>
+        {% if entreprise_selectionnee %}
+            <a href="{% url 'statistiques_leads' %}?entreprise={{ entreprise_selectionnee }}" class="btn btn-primary">Voir les statistiques</a>
+        {% endif %}
+    </form>
+
+    <!-- Tableau des leads -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Nom Offre</th>
+                <th>Nombre Offres</th>
+                <th>Localisation</th>
+                <th>Porteur Lead</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Statut</th>
+                <th>Date Publication</th>
+                <th>Priorité</th>
+                <th>Description Job</th>
+                <th>Lien</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+                <tr>
+                    <td>{{ lead.nom }}</td>
+                    <td>{{ lead.nom_offre }}</td>
+                    <td>{{ lead.nombre_offres }}</td>
+                    <td>{{ lead.localisation_du_lead }}</td>
+                    <td>{{ lead.porteur_lead }}</td>
+                    <td>{{ lead.adresse_mail_de_contact }}</td>
+                    <td>{{ lead.telephone }}</td>
+                    <td>{{ lead.statut_du_lead }}</td>
+                    <td>{{ lead.date_publication_offre }}</td>
+                    <td>{{ lead.priorite }}</td>
+                    <td>
+                        <button class="show-more" onclick="toggleDescription(this)">Show More</button>
+                        <div class="description">{{ lead.description_job }}</div>
+                    </td>
+                    <td><a href="{{ lead.lien_vers_lead }}" target="_blank">Lien</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div id="pagination">
+        {% if leads.has_previous %}
+            <a href="?page={{ leads.previous_page_number }}&search={{ search_query }}&entreprise={{ entreprise_selectionnee }}" class="btn btn-outline-primary me-1">Précédent</a>
+        {% endif %}
+        {% for num in leads.paginator.page_range %}
+            {% if leads.number == num %}
+                <span class="btn btn-primary">{{ num }}</span>
+            {% else %}
+                <a href="?page={{ num }}&search={{ search_query }}&entreprise={{ entreprise_selectionnee }}" class="btn btn-outline-primary">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if leads.has_next %}
+            <a href="?page={{ leads.next_page_number }}&search={{ search_query }}&entreprise={{ entreprise_selectionnee }}" class="btn btn-outline-primary">Suivant</a>
+        {% endif %}
+    </div>
+
+    <script>
+        function toggleDescription(button) {
+            const description = button.nextElementSibling;
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+                button.textContent = 'Show Less';
+            } else {
+                description.style.display = 'none';
+                button.textContent = 'Show More';
+            }
+        }
+    </script>
+</body>
+</html>

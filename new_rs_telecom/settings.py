@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portail_web',
-    'pulls'
+    'pulls',
+    'test',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [ 
             BASE_DIR/'portail_web/templates',
-            BASE_DIR/'pulls/templates'
+            BASE_DIR/'pulls/templates',
+            BASE_DIR/'test/templates',
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,14 +87,14 @@ WSGI_APPLICATION = 'new_rs_telecom.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default' : { 
-        'ENGINE' : 'django.db.backends.mysql', 
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT' : '3306', 
-    } 
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lead',  # Nom de la base de données que vous avez créée
+        'USER': 'root',  # Utilisateur MySQL par défaut
+        'PASSWORD': '',  # Mot de passe pour l'utilisateur root
+        'HOST': 'localhost',  # Adresse de l'hôte MySQL
+        'PORT': '3306',  # Port par défaut pour MySQL
+    }
 }
 
 
@@ -140,7 +142,7 @@ STATIC_URL = 'static/'
 # STATICROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR,'portail_web/static'),
-    os.path.join(BASE_DIR,'pulls/static')
+    os.path.join(BASE_DIR,'pulls/static'),
 ]
 
 # Media files

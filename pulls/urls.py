@@ -10,6 +10,7 @@ urlpatterns = [
     path('Mot de passe oublier', views.forget , name='forget'),
     path('Confirmation/<client_id>/', views.send_confirmation , name='confirmation'),
     path("activate/<uidb64>/<token>/", views.activate, name="activate"),
+    
 
 
 
