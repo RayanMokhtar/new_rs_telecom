@@ -540,11 +540,9 @@ def calculate_keyword_occurrences(cv_content, mission_text, langue_text, entrepr
     keyword_occurrences = {keyword: cv_content.lower().count(keyword.lower()) for keyword in keywords}
     return keyword_occurrences
 
-def calculate_keyword_occurrences_v2(cv_content, mission_text, keywords_text):
-    keywords = (' ' + keywords_text).split()
-    keyword_occurrences = {keyword: cv_content.lower().count(keyword.lower()) for keyword in keywords}
-    return keyword_occurrences
-   
+
+
+
 def upload_cv(request):
     if request.method == 'POST':
         try:
@@ -726,4 +724,14 @@ def process_matching_v2(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
     
+from collections import Counter
+def calculate_keyword_occurrences_v2(content, mission_text, keywords_text):
+    keywords = keywords_text.split()
+    keyword_counts = Counter()
+
+    for keyword in keywords:
+        count = len(re.findall(r'\b{}\b'.format(re.escape(keyword)), content, re.IGNORECASE))
+        keyword_counts[keyword] += count
+
+    return keyword_counts
     ##########################################################################

@@ -206,16 +206,16 @@ def get_wordnet_pos(tag):
     else:
         return NOUN
 
-liste_entreprise=['orange','bouygues telecom','alten','capgemeini','sopra steria','bnp paribas' ,"société générale","caisse d\'épargne","lcl",'valeo','ESN','banque','université','master','école d\'ingénieurs'
+liste_entreprise=['orange','bouygues telecom','alten','capgemeini','sopra steria','bnp paribas' ,'bpce',"société générale","caisse d\'épargne","lcl",'valeo','ESN','banque','université','master','école d\'ingénieurs'
 'sfr','free','société','sncf','ratp','auchan','carrefour','intermarché','grande distribution','esn','open classrooms']
 
 liste_mots_cle = [
-    'Python', 'Java', 'JavaScript', 'C', 'C++','c++', 'C#', 'Ruby', 'PHP', 'Swift', 'Objective-C', 
-    'Kotlin', 'Go', 'Rust', 'Perl', 'Scala', 'Haskell', 'R', 'MATLAB', 'SQL', 'TypeScript', 
-    'Shell','Hibernate' ,'Dart', 'Lua','Visual Code Studio','VS code' ,'Visual Basic', 'Fortran', 'COBOL', 'React', 'Angular', 'Vue', 
+    'Python', 'Java','RESTAPI' ,'JavaScript', 'langage C', 'C++','c++', 'C#', 'Ruby', 'PHP', 'Swift', 'Objective-C', 
+    'Kotlin', 'Go', 'Rust', 'Perl', 'Scala', 'Haskell', 'langage R', 'MATLAB', 'SQL', 'TypeScript', 
+    'Shell','Hibernate' ,'Dart', 'Lua','Visual Code Studio','VS code' ,'Visual Basic', 'Fortran', 'COBOL', 'React', 'Angular', 'VueJs', 
     'Django', 'Flask', 'Spring', 'Laravel', 'Ruby on Rails', 'Express', '.NET', 'TensorFlow', 
     'PyTorch', 'Keras', 'Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'Bootstrap', 'jQuery', 
-    'Node.js','nodejs','lambda','rds','eks','ec2','ecs','gce','shell', 'ASP.NET', 'SASS', 'LESS', 'Kubernetes', 'Docker', 'Jenkins', 'Ansible', 'Chef', 
+    'Node.js','nodejs','lambda','eks','ec2','ecs','gce','shell', 'ASP.NET', 'SASS', 'LESS', 'Kubernetes', 'Docker', 'Jenkins', 'Ansible', 'Chef', 
     'Puppet', 'Terraform', 'Nagios', 'Prometheus', 'Grafana', 'Git', 'GitHub', 'GitLab', 
     'Bitbucket', 'CircleCI', 'Travis CI', 'MySQL', 'PostgreSQL', 'SQLite', 'MongoDB', 
     'Cassandra', 'Redis', 'MariaDB', 'Oracle', 'SQL Server', 'DB2', 'Elasticsearch', 'Firebase', 
@@ -235,8 +235,8 @@ liste_mots_cle = [
     'Machine Learning', 'Deep Learning', 'Artificial Intelligence', 'Blockchain', 'Cryptocurrency',
     'Cybersecurity', 'Sécurité', 'Réseau', 'Informatique', 'Programmation', 'Codage', 'Développement',
     'Frontend', 'Backend', 'Fullstack', 'UI/UX', 'Web', 'Mobile', 'Cloud', 'IAAS', 'PAAS', 'SAAS',
-    'Microservices', 'Containers', 'Orchestration', 'CI/CD', 'Infrastructure', 'Automation', 'Scripts',
-    'API', 'SDK', 'IDE', 'Versioning', 'Continuous Integration', 'Continuous Deployment', 'Testing','ci','cd'
+    'Microservices', 'Containers', 'Orchestration', 'CICD', 'Infrastructure', 'Automation', 'Scripts',
+    'API', 'SDK', 'IDE', 'Versioning', 'Continuous Integration', 'Continuous Deployment', 'Testing','cicd','ci cd'
     'QA', 'Quality Assurance', 'Performance', 'Scalability', 'Reliability', 'Availability', 'Disaster Recovery',
     'Backup', 'Compliance', 'GDPR', 'Data Protection', 'Privacy', 'Ethics', 'Hacking', 'Penetration Testing',
     'Incident Response', 'Threat Hunting', 'Vulnerability Management', 'Patch Management', 'Risk Assessment',
@@ -426,13 +426,14 @@ liste_mots_cle = [
     'Environmental Management System', 'Energy Management System', 'Occupational Health and Safety', 'Health and Safety Management System', 'Quality Management System', 'Risk','développeur','fullstack','sap','rgpd','dba','administrateur base de données','Audits', 'Achats', 'Helpdesk', 'Système', 'Sécurité', 'Telecom', 'Processus', 'PRA', 'Budgets',
     'opex', 'capex' ,'Architecture ', 'Cloud' ,'privé' ,'Vmware' ,'Google' ,'AS400','Citrix' ,'AWS',
     'Responsable des Services Généraux siège' ,'Immobilier', 'Amélioration continue',
-    'animations sécurité', 'ISO', 'HSE', 'déménagements', 'travaux', 'space planning', 'Budgets',
-    'pilotage', 'fournisseurs','moa','moe','qa','test','testeur','test unitaire','conteneurisation','intelligence artificielle','data science','wordpress','erp','crm','coach agile','scrum master','devops','c ++','c #', 'android studio'
+    'animations sécurité', 'ISO', 'HSE', 'space planning', 'Budgets',
+    'pilotage', 'fournisseurs','moa','moe','quality assurance','test','testeur','test unitaire','conteneurisation','intelligence artificielle','data science','wordpress','erp','crm','coach agile','scrum master','devops','c ++','c #', 'android studio'
     'junior','senior','datacenter','climatisation','allemand','espagnol','français','anglais','toeic','certifications','communication','telecom','télécommunication'
     ,'paris','lyon','marseille','arabe','carrefour','ingénieur système','ingénieur réseau','ingénieur système réseau','italien','infrastructure IT','infrastructure','pytest','data engineering'
     ,'pytest','data engineering','5 ans d\'expérience','6 ans d\'expérience','7 ans d\'expérience','8 ans d\'expérience','9 ans d\'expérience','10 ans d\'expérience','12 ans d\'expérience','3 ans d\'expérience','secteur bancaire'
     ,'(Gerrit/GitLab)','gitlab','gerrit', 'SVN', 'SonarQube', 'Nexus','italien','Windows Server','Openstack' , 'datacenters' , 'ingénieries' ,'monitoring','virtualisation','HA-Proxy','cybersécurité','Graphite','Icinga 2','autonome','force de proposition','challenge'
-    ,'mise en confirmité','rigoureux','fortinet','scripting','bash','gitbash','paas','saas','master 2' , 'bac +5','data','sonar','gitconnaissance','véhicules autononomes','signal','audio','tcp','ip','cross-plateform','agile','scrum'] 
+    ,'mise en confirmité','rigoureux','fortinet','scripting','bash','gitbash','paas','saas','master 2' , 'bac +5','data','sonar','gitconnaissance','nomes','signal','audio','tcp','ip','cross-plateform','agile','scrum'
+    ,'intelligence embarquée','pssi'] 
 
 ### prétraitement du CV en format pdf parsé 
 
@@ -647,65 +648,146 @@ def preprocess_text_lead(langue_text,liste_mots_cle):
     texte = ' '.join(resultat)
     return resultat
 ############################"
+
+from sklearn.feature_extraction.text import CountVectorizer
+
 nlp = spacy.load('fr_core_news_sm')
+def nettoyage_texte(text):
+    text = text.replace('\\', ' ')
+    text = text.replace('/', '')
+    text = text.replace('(', '')
+    text = text.replace(')', '')
+    # Séparer les mots composés de minuscules suivies de majuscules (ex : cybersécuritéEngineering -> cybersécurité Engineering)
+    text = re.sub(r'([a-zéèêàùîï])([A-ZÉÈÊÀÙÎÏ])', r'\1 \2', text)
+    return text
+
+    return text
+def get_bigrams(text):
+    words = text.split()
+    bigrams = [' '.join(bigram) for bigram in zip(words, words[1:])]
+    return bigrams
+
+def remove_duplicates(all_keywords_and_phrases):
+    unique_elements = set()
+    result = []
+    
+    for element in all_keywords_and_phrases:
+        words = set(element.split())
+        if not any(word in unique_elements for word in words):
+            unique_elements.update(words)
+            result.append(element)
+    
+    return result
+
 def extract_keywords(competences_text):
-    # Replace backslashes with spaces
-    competences_text = competences_text.replace('\\', ' ')
-    
-    # Replace instances of lowercase followed by uppercase with space separation
-    competences_text = re.sub(r'([a-z])([A-Z])', r'\1 \2', competences_text)
-    
-    # Replace instances of specific patterns like ci/cd with space separation
-    competences_text = re.sub(r'([a-z])\/([a-z])', r'\1 \2', competences_text, flags=re.IGNORECASE)
-    
-    # Tokenize the text
+    competences_text = nettoyage_texte(competences_text)
+    # Tokenisation en phrases
     doc = nlp(competences_text)
+    sentences = list(doc.sents)
     
-    # Convert the list of non-modifiable keywords to lowercase
+    # Convertir la liste des mots-clés non modifiables en minuscules
     non_modif = set(word.lower() for word in liste_mots_cle)
     
-    # Extract keywords by filtering out stop words, punctuation, and checking against non-modifiable keywords
-    resultat = list(set([token.text for token in doc if len(token.text) > 1 and token.text.lower() in non_modif and not token.is_stop and not token.is_punct]))
-    # Convert the list of keywords to a string separated by spaces
-    texte = ' '.join(resultat)
+    all_keywords_and_phrases = []
+
+    # Extraction des bigrammes et identification des phrases-clés
+    for sentence in sentences:
+        sentence_text = sentence.text
+        bigrams_in_sentence = get_bigrams(sentence_text)
+        
+        for bigram in bigrams_in_sentence:
+            words = bigram.split()
+            # Si le bigramme est dans la liste des mots-clés non modifiables, l'ajouter
+            if bigram.lower() in non_modif:
+                all_keywords_and_phrases.append(bigram)
+            else:
+                # Sinon, vérifier chaque mot du bigramme
+                for word in words:
+                    # Séparer les mots composés de minuscules suivies de majuscules
+                    separated_words = re.sub(r'([a-zéèêàùîï])([A-ZÉÈÊÀÙÎÏ])', r'\1 \2', word).split()
+                    for sep_word in separated_words:
+                        if sep_word.lower() in non_modif:
+                            all_keywords_and_phrases.append(sep_word)
+                            break
     
-    print(f'Texte modifié: {competences_text}')
-    print(f'Non modifiable keywords: {non_modif}')
-    print(f'Extracted keywords: {resultat}')
-    print(f'Text: {texte}')
+    liste_finale = list(set(all_keywords_and_phrases))
     
-    return texte
+    
+    # Convertir la liste des mots-clés et phrases-clés en une chaîne de caractères séparée par des espaces
+    result_text = ' , '.join(liste_finale)
+    
+    print(f'Extracted keywords and key phrases: {all_keywords_and_phrases}')
+    print(f'Result Text: {result_text}')
+    
+    return result_text
 ### séparer chaque élément de la liste par un espace afin de le convertir en une chaine de caracteres 
 
 
 def search_matching_cvs_v2(mission_text, keywords_text, poids_lead=3, poids_keywords=2, top_n=10):
     preprocessed_mission_text = preprocess_text_mission(mission_text)
-    preprocessed_keywords_text = keywords_text 
+    preprocessed_keywords_text = keywords_text.split()
+
+    should_clauses = [
+        {
+            "match": {
+                "content": {
+                    "query": preprocessed_mission_text,
+                    "boost": poids_lead  # Poids pour le texte de mission
+                }
+            }
+        }
+    ]
+
+    for keyword in preprocessed_keywords_text:
+        should_clauses.append({
+            "match_phrase": {
+                "content": {
+                    "query": keyword,
+                    "boost": poids_keywords  # Poids pour les mots clés exacts
+                }
+            }
+        })
 
     query = {
         "query": {
             "bool": {
-                "should": [
-                    {
-                        "match": {
-                            "content": {
-                                "query": preprocessed_mission_text,
-                                "boost": poids_lead  # Poids pour le texte de mission
-                            }
-                        }
-                    },
-                    {
-                        "match": {
-                            "content": {
-                                "query": preprocessed_keywords_text,
-                                "boost": poids_keywords  # Poids pour les mots clés
-                            }
-                        }
-                    }
-                ]
+                "should": should_clauses
             }
         }
     }
 
     results = es.search(index="cvs", body=query, size=top_n)
     return results['hits']['hits']
+##################################################################"
+
+
+''' 
+problèmatique : les mots clés capturés ne sont pas toujours pertinents et peuvent parfois 
+induire en erreur le modèle à choisir le meilleur CV 
+par exemple C désignant le langage C et dans les occurences des 'C' capturés dans les cv , 
+le contexte est dans ce cas différent et fausse par conséquent les résultats 
+Solution :
+mise en place d'une fonction afin de permettre une analyse approfondie des mots clés récupérés , 
+qui réajuste l'algorithme de matching de CV 
+l'algorithme de matching CV-lead_description
+étape 1 : récupérer les mots clés récupérés lors du matching 
+étape 2 : récupérer le contexte des mots clés dans le job description du lead :
+par exemple : arm => embarqué et ça se fait via la classification via un fichier csv
+Si le mot mentionné dans le job description lead n'est pas pertinent : le mot clé sera ignoré 
+par exemple si arm veut dire bras dans le contexte du lead , le mot clé sera supprimé
+(piste : utilisation d'algorithmes de clustering pour voir si le mot est pertinent ou non )
+étape 3 : récupérer le contexte des mots clés capturés dans chaque CV , et avec le word-vectors embedding , 
+chaque occurence du mot trouvée dans chaque CV sera étudiée , et si la classification n'a rien à voir avec 
+le contexte du mot dans le lead , l'occurence sera ignorée et ce ne sera pas comptabilisé et ça va 
+influer sur le score final : sur 36 occurences du mot ARM , seules 10 représentent : intelligence embarquée 
+et donc cette occurence sera ignorée dans l'analyse approfondie 
+étape 4 : modifier l'algorithme de matching CV , en jouant sur l'occurence du mot récupéré après , 
+et si cette occurence n'a pas de contexte qui match avec le lead récupéré , dans ce cas ce sera ignoré 
+
+et on fait ça avec les mots ayant une longueur < 4 , car j'estime que au delà , le mot est considéré 
+comme pertinent 
+étape 5 : développer un bouton  de fonctionnalité avancée qui retourne de nouveaux mots clés , un sous 
+ensemble E' qui appartient à l'ensemble de base E , telle que E' est inclus ou égal à E (
+égal si et seulement si tous les mots clés des leads capturés sont considérés comme pertinents
+) , mettre ensuite en place un écran de chargement puis affichage des résultats avec les nouveaux mots clés et un nouveau résultat de matching 
+'''
