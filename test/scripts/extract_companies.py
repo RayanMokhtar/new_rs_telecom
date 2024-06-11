@@ -229,9 +229,11 @@ def load_and_filter_communes(file_path):
 
     return output_csv_path
 
-def construct_job_url(job_id):
-    return f"https://www.linkedin.com/jobs/search/?currentJobId={job_id}"
-
+def construct_job_url(job_id, job_name, company):
+    base_url = "https://www.linkedin.com/jobs/view/"
+    job_name_formatted = job_name.lower().replace(' ', '-')
+    company_formatted = company.lower().replace(' ', '-')
+    return f"{base_url}{job_name_formatted}-at-{company_formatted}-{job_id}?trk=public_jobs_topcard-title"
 
 def update_or_replace_entries(existing_data, new_data):
     # Convertir les données existantes en un DataFrame pandas
@@ -350,63 +352,34 @@ def write_to_db(data):
         insert_lead_to_db(row)
 
 
-
 def main_extraction(keywords, location, time_frame):
     company_job_pairs, company_counts, search_url = fetch_job_listings_selenium(keywords, location, time_frame)
     new_data = []
 
     job_details = fetch_and_display_job_details_from_search_url(search_url)
-    i=1
+    i = 1
     for (company, job_name, job_id), (recruiter_name, job_description, recruiter_profile_link) in zip(company_job_pairs, job_details):
-        url = create_company_url(company)
-        html_content_indeed = get_html(url)
-        job_link = f'{search_url}&position={i}'
-        i=i+1
-        
-        if html_content_indeed:
-            parsed_data = parse_html(html_content_indeed)
-            row_data = {
-                'nom': company,
-                'nombre_offres': company_counts[company],
-                'nom_offre': job_name,
-                'localisation': location,
-                'taille': parsed_data['taille'],
-                'secteur': parsed_data['secteur'],
-                'chiffre_d_affaires': parsed_data['chiffre_d_affaires'],
-                'job_description': job_description,
-                'porteur_lead': recruiter_name if recruiter_name is not None else 'non mentionné',
-                'joblien': job_link,
-                'lien_profil_linkedin': recruiter_profile_link
-            }
-            print(f'la valeur de i est {i} et le lien est {job_link}')
-        else:
-            row_data = {
-                'nom': company,
-                'nombre_offres': company_counts[company],
-                'nom_offre': job_name,
-                'localisation': location,
-                'taille': 'non mentionné',
-                'secteur': 'non mentionné',
-                'chiffre_d_affaires': 'non mentionné',
-                'job_description': job_description,
-                'porteur_lead': recruiter_name if recruiter_name is not None else 'non mentionné',
-                'joblien': job_link,
-                'lien_profil_linkedin': recruiter_profile_link
-            }
-            print(f'la valeur de i est {i} et le lien est {job_link}')
+        linkedin_info = get_linkedin_company_info(company)  # Appel de la nouvelle fonction pour obtenir les informations LinkedIn
+        job_link = construct_job_url(company,job_name,job_id)
+        i += 1
+
+        row_data = {
+            'nom': company,
+            'nombre_offres': company_counts.get(company, 1),
+            'nom_offre': job_name,
+            'localisation': location,
+            'taille': linkedin_info.get('taille', 'non mentionné'),
+            'secteur': linkedin_info.get('secteur', 'non mentionné'),
+            'chiffre_d_affaires': 'non mentionné',  # Placeholder pour chiffre d'affaires
+            'job_description': job_description,
+            'porteur_lead': recruiter_name if recruiter_name is not None else 'non mentionné',
+            'joblien': job_link,
+            'lien_profil_linkedin': recruiter_profile_link
+        }
+        print(f'la valeur de i est {i} et le lien est {job_link}')
         new_data.append(row_data)
 
     write_to_db(new_data)  # Écrire dans la base de données
     return search_url, new_data
-
-
-
-
-
-
-
-
-
-
 
 

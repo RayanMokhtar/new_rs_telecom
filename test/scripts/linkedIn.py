@@ -295,3 +295,143 @@ def fetch_and_display_job_details_from_search_url(search_url):
                 continue
     
     return job_details
+
+
+
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
+import time
+import random
+from fake_useragent import UserAgent
+
+def configure_driver():
+    ua = UserAgent()
+    user_agent = ua.random
+    options = Options()
+    options.add_argument(f'user-agent={user_agent}')
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(options=options)
+    return driver
+
+def get_linkedin_company_info(company_name, max_attempts=4):
+    attempt = 0
+    company_info = {}
+
+    while attempt < max_attempts:
+        attempt += 1
+        try:
+            driver = configure_driver()
+
+            # Recherche Google pour trouver la page LinkedIn de l'entreprise
+            search_url = f"https://www.google.com/search?q={company_name}+site:linkedin.com/company"
+            driver.get(search_url)
+            time.sleep(random.uniform(5, 10))  # Attendre que la page charge
+
+            # Cliquer sur le premier résultat de recherche
+            search_results = driver.find_elements(By.CSS_SELECTOR, 'div.yuRUbf a')
+            if search_results:
+                company_url = search_results[0].get_attribute('href')
+                print(f"Company URL found: {company_url}")
+                driver.get(company_url)
+                time.sleep(random.uniform(5, 10))  # Attendre que la page charge
+
+                # Essayer de cliquer sur l'onglet "À propos" (About) si nécessaire
+                try:
+                    about_tab = WebDriverWait(driver, 10).until(
+                        EC.element_to_be_clickable((By.XPATH, "//a[@data-control-name='page_member_main_nav_about_tab']"))
+                    )
+                    driver.execute_script("arguments[0].click();", about_tab)
+                    time.sleep(random.uniform(5, 10))  # Attendre que la page charge
+                except Exception as e:
+                    print("About tab not found or not clickable:", e)
+
+                # Scraper la page LinkedIn de l'entreprise
+                soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+                # Trouver la section "À propos"
+                try:
+                    about_section = driver.find_element(By.XPATH, "//h2[contains(text(),'À propos')]")
+                    driver.execute_script("arguments[0].scrollIntoView(true);", about_section)
+                    print("About section found")
+                except Exception as e:
+                    print("About section not found. Exiting.")
+                    driver.quit()
+                    continue
+
+                # Trouver le conteneur de contenu principal
+                content_container = soup.find('div', class_='core-section-container__content break-words')
+                if not content_container:
+                    print("Content container not found. Exiting.")
+                    driver.quit()
+                    continue
+                else:
+                    print("Content container found")
+
+                # Extraire et afficher les informations
+                def extract_info(label, data_test_id):
+                    dt_element = content_container.find('div', {'data-test-id': data_test_id})
+                    if dt_element:
+                        print(f"{label} element found")
+                        dd_element = dt_element.find('dd')
+                        if dd_element:
+                            info = dd_element.get_text(strip=True)
+                            print(f"{label}: {info}")
+                            return info
+                    print(f"{label} element not found")
+                    return None
+
+                company_info['site_web'] = extract_info('Site web', 'about-us__website')
+                company_info['secteur'] = extract_info('Secteur', 'about-us__industry')
+                company_info['taille'] = extract_info('Taille de l’entreprise', 'about-us__size')
+                company_info['siege_social'] = extract_info('Siège social', 'about-us__headquarters')
+                company_info['type'] = extract_info('Type', 'about-us__organizationType')
+                company_info['fondee_en'] = extract_info('Fondée en', 'about-us__foundedOn')
+                company_info['specialisations'] = extract_info('Domaines', 'about-us__specialties')
+
+                # Vérifier si toutes les informations nécessaires ont été récupérées
+                if 'site_web' in company_info and 'taille' in company_info and 'secteur' in company_info:
+                    driver.quit()
+                    return company_info
+            else:
+                print("Company URL not found.")
+
+            driver.quit()
+        except Exception as e:
+            print(f"Attempt {attempt} failed: {e}")
+            time.sleep(random.uniform(5, 10))  # Attendre avant de réessayer
+
+    # Si toutes les tentatives échouent, chercher une similitude dans la base de données
+    return search_in_database(company_name)
+
+from test.models import Leads
+from django.db.models import Q
+def search_in_database(company_name):
+    try:
+        company_info = Leads.objects.filter(Q(nom__icontains=company_name)).first()
+        if company_info:
+            return {
+                'site_web': company_info.secteur_activite,
+                'secteur': company_info.secteur_activite,
+                'taille': company_info.taille_entreprise,
+                'siege_social': 'non mentionné',
+                'type': 'non mentionné',
+                'fondee_en': 'non mentionné',
+                'specialisations': 'non mentionné'
+            }
+    except Exception as e:
+        print(f"Database search failed: {e}")
+    
+    return {
+        'site_web': 'non mentionné',
+        'secteur': 'non mentionné',
+        'taille': 'non mentionné',
+        'siege_social': 'non mentionné',
+        'type': 'non mentionné',
+        'fondee_en': 'non mentionné',
+        'specialisations': 'non mentionné'
+    }
