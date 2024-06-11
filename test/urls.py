@@ -45,5 +45,5 @@ urlpatterns = [
     #path à la vue qui se charge de renvoyer les mots clés changés du lead et proposition de vouloir les changer ou pas , puis procéder au processus du matching lead-CV 
     path('matching-lead-cv/<int:lead_id>/',views.changer_mots_cle_lead, name='lead_details'),
     path('process_matching_v2/', views.process_matching_v2, name='process_matching_v2'),
-    
+    path('history/', views.history, name='history'),
 ]

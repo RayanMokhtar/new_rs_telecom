@@ -735,3 +735,17 @@ def calculate_keyword_occurrences_v2(content, mission_text, keywords_text):
 
     return keyword_counts
     ##########################################################################
+
+from django.db.models import DateField
+from django.db.models.functions import Trunc
+from django.utils import timezone
+def history(request):
+    Leads.objects.filter(date_maj_lead__isnull=True).update(date_maj_lead=timezone.now())
+    leads = Leads.objects.annotate(date=Trunc('date_maj_lead', 'day', output_field=DateField())).order_by('-date_maj_lead')
+    grouped_leads = {}
+    for lead in leads:
+        date = lead.date.strftime('%Y-%m-%d')
+        if date not in grouped_leads:
+            grouped_leads[date] = []
+        grouped_leads[date].append(lead)
+    return render(request, 'test/historique.html', {'grouped_leads': grouped_leads})

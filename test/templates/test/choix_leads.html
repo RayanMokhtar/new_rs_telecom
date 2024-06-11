@@ -46,7 +46,7 @@
 
     .list-group-item-action:hover,
     .list-group-item-action:focus {
-      background-color: #0056b3;
+      background-color: #0c00b3;
       color: white;
     }
 
@@ -65,6 +65,40 @@
       z-index: 1000;
       position: relative;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      border: none;
+      background: linear-gradient(to right, #003cb3, #2575fc);
+      color: white;
+    }
+
+    .modal-header {
+      background: linear-gradient(to right, #003cb3, #2575fc);
+      color: white;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .btn-close {
+      filter: invert(1) brightness(2);
+    }
+
+    .notification-content {
+      text-align: center;
+    }
+
+    .animated-text {
+      opacity: 0;
+      animation: fadeInText 2s forwards;
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -148,8 +182,8 @@
             <div class="card card-zoom">
               <img src="../../static/test/css/visualiser_candidats_infos.png" class="card-img-top img-fluid" alt="">
               <div class="card-body">
-                <h3 class="card-title"><a href="#" class="stretched-link">Analyse des Candidats</a></h3>
-                <p class="card-text">Cette page fournit une analyse détaillée des candidats, incluant des rapports sur leurs performances passées, des évaluations de compétences, et des recommandations pour les futures opportunités. L'outil d'analyse aide à comprendre les forces et les faiblesses de chaque candidat, facilitant ainsi une gestion stratégique des talents et une meilleure prise de décision.</p>
+                <h3 class="card-title"><a href="{% url 'history' %}" class="stretched-link">Historique des Leads capturés / modifiés </a></h3>
+                <p class="card-text">Cette page sert d'historique , afin de voir quels ont été les leads qui ont été capturés tel jour , afin d'avoir un aperçu détaillé de ce que le générateur de leads a généré la veille ...</p>
               </div>
             </div>
           </div>
@@ -158,6 +192,28 @@
         </div>
       </div>
   </section>
+
+  <!-- Boîte Modale -->
+  <div class="modal fade" id="leadsModal" tabindex="-1" aria-labelledby="leadsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="leadsModalLabel">Notification</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="notification-content">
+            <p class="animated-text">Souhaitez-vous voir les derniers leads capturés ?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+          <button type="button" id="viewLeadsBtn" class="btn btn-primary">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -174,6 +230,20 @@
             card.classList.add('zoomed');
           }
         });
+      });
+
+      // Afficher la boîte modale après un certain temps
+      setTimeout(function() {
+        var leadsModal = new bootstrap.Modal(document.getElementById('leadsModal'), {
+          backdrop: 'static',
+          keyboard: false
+        });
+        leadsModal.show();
+      }, 2000); // Afficher la modale après 2 secondes
+
+      // Rediriger vers la page historique lorsqu'on clique sur "Oui"
+      document.getElementById('viewLeadsBtn').addEventListener('click', function() {
+        window.location.href = "{% url 'history' %}?date={{ today_date }}";
       });
     });
   </script>
